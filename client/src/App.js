@@ -1,7 +1,8 @@
 import React from "react";
+import CreateCard from "./components/CreateCard";
 
 const App = () => {
-  return <div>Test</div>;
+  return <div><CreateCard /></div>;
 };
 
 export default App;
