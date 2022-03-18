@@ -16,11 +16,11 @@ const cardSchema = new mongoose.Schema({
     required: true,
     default: true,
   },
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-    ref: "User",
-  },
+  // user: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   required: true,
+  //   ref: "User",
+  // },
 });
 
 module.exports = mongoose.model("Card", cardSchema);
