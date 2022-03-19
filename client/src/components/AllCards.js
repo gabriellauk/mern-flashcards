@@ -8,10 +8,10 @@ const Card = (props) => (
     <td>{props.card.backText}</td>
     <td>{props.card["_id"]}</td>
     <td>
-      {/* <Link to={`http://localhost:5000/cards/update/${props.card["_id"]}`}>
+      <Link to={`/edit/${props.card["_id"]}`}>
         Edit
       </Link>{" "}
-      | */}
+      |
       <button
         onClick={() => {
           props.deleteCard(props.card["_id"]);

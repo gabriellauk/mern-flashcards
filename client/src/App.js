@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 
 import CreateCard from "./components/CreateCard";
 import AllCards from "./components/AllCards";
+import EditCard from "./components/EditCard";
 
 const App = () => {
   return (
@@ -10,6 +11,7 @@ const App = () => {
       <Routes>
         <Route path="/add" element={<CreateCard />} />
         <Route path="/" element={<AllCards />} />
+        <Route path="/edit/:id" element={<EditCard />} />
       </Routes>
     </div>
   );
