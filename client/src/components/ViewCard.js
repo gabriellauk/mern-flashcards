@@ -5,9 +5,6 @@ const ViewCard = (props) => {
   const params = useParams();
   const navigate = useNavigate();
 
-  const { id } = useParams();
-  console.log(id);
-
   const [card, setCard] = useState([]);
 
   // Get specific Card from the database
@@ -42,12 +39,14 @@ const ViewCard = (props) => {
 
   return (
     <table>
-      <tr>
-        <td>{card.frontText}</td>
-        <td>{card.backText}</td>
-        <td>{card["_id"]}</td>
-        <td>{card.active === true ? <p>active</p> : <p>inactive</p>}</td>
-      </tr>
+      <tbody>
+        <tr>
+          <td>{card.frontText}</td>
+          <td>{card.backText}</td>
+          <td>{card["_id"]}</td>
+          <td>{card.active === true ? <p>active</p> : <p>inactive</p>}</td>
+        </tr>
+      </tbody>
     </table>
   );
 };
