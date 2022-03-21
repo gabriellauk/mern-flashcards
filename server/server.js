@@ -3,9 +3,18 @@ const app = express();
 const cors = require("cors");
 require("dotenv").config({ path: "./config.env" });
 const port = process.env.PORT || 5000;
-app.use(cors());
+var corsOptions = {
+  origin: "http://localhost:3000"
+};
+app.use(cors(corsOptions));
 app.use(express.json());
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }));
 app.use(require("./routes/card"));
+
+// routes
+require('./routes/auth.routes')(app);
+require('./routes/user.routes')(app);
 
 const mongoose = require( 'mongoose' )
 mongoose.connect( process.env.ATLAS_URI )
@@ -16,3 +25,5 @@ db.once( 'open', error => console.log( 'Connected to Mongoose' ) )
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
 });
+
+
