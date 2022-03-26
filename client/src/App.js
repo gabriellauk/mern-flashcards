@@ -10,6 +10,8 @@ import Home from "./components/Home";
 import Profile from "./components/Profile";
 import BoardUser from "./components/BoardUser";
 
+import EventBus from "./components/common/EventBus";
+
 import CreateCard from "./components/CreateCard";
 import AllCards from "./components/AllCards";
 import EditCard from "./components/EditCard";
@@ -17,14 +19,25 @@ import ViewCard from "./components/ViewCard.js";
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(undefined);
+
   useEffect(() => {
     const user = AuthService.getCurrentUser();
     if (user) {
       setCurrentUser(user);
     }
   }, []);
+
+  useEffect(() => {
+    EventBus.on("logout", () => {
+      logOut();
+    });
+
+    return () => EventBus.remove("logout");
+  }, []);
+
   const logOut = () => {
     AuthService.logout();
+    setCurrentUser(undefined);
   };
   return (
     <div>
