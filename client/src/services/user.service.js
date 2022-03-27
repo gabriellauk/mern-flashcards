@@ -7,7 +7,11 @@ const getPublicContent = () => {
 const getUserBoard = () => {
   return axios.get(API_URL + "user", { headers: authHeader() });
 };
+const getUserCards = () => {
+  return axios.get(API_URL + "userCards", { headers: authHeader() });
+};
 export default {
   getPublicContent,
   getUserBoard,
+  getUserCards
 };

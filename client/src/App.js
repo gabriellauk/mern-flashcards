@@ -12,10 +12,11 @@ import BoardUser from "./components/BoardUser";
 
 import EventBus from "./components/common/EventBus";
 
-import CreateCard from "./components/CreateCard";
-import AllCards from "./components/AllCards";
-import EditCard from "./components/EditCard";
-import ViewCard from "./components/ViewCard.js";
+// import CreateCard from "./components/CreateCard";
+// // import AllCards from "./components/AllCards";
+// import EditCard from "./components/EditCard";
+// import ViewCard from "./components/ViewCard.js";
+import UserCards from "./components/ShowCards/UserCards";
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -58,6 +59,13 @@ const App = () => {
               </Link>
             </li>
           )}
+          {currentUser && (
+            <li className="nav-item">
+              <Link to={"/usercards"} className="nav-link">
+                User Cards
+              </Link>
+            </li>
+          )}
         </div>
         {currentUser ? (
           <div className="navbar-nav ml-auto">
@@ -94,6 +102,7 @@ const App = () => {
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/profile" element={<Profile />} />
           <Route path="/user" element={<BoardUser />} />
+          <Route path="/usercards" element={<UserCards />} />
         </Routes>
       </div>
     </div>
