@@ -10,8 +10,12 @@ const getUserBoard = () => {
 const getUserCards = () => {
   return axios.get(API_URL + "userCards", { headers: authHeader() });
 };
+const addCard = () => {
+  return axios.post(API_URL + "addCard", { headers: authHeader() });
+};
 export default {
   getPublicContent,
   getUserBoard,
-  getUserCards
+  getUserCards,
+  addCard
 };

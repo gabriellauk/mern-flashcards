@@ -11,22 +11,25 @@ import Profile from "./components/Profile";
 import BoardUser from "./components/BoardUser";
 
 import EventBus from "./components/common/EventBus";
+import PrivateRoute from "./components/common/PrivateRoute";
 
 // import CreateCard from "./components/CreateCard";
-// // import AllCards from "./components/AllCards";
+// import AllCards from "./components/AllCards";
 // import EditCard from "./components/EditCard";
 // import ViewCard from "./components/ViewCard.js";
 import UserCards from "./components/ShowCards/UserCards";
+import AddCard from "./components/AddCard/AddCard";
 
 const App = () => {
-  const [currentUser, setCurrentUser] = useState(undefined);
+  const [currentUser, setCurrentUser] = useState(AuthService.getCurrentUser());
 
-  useEffect(() => {
+  const updateUserState = () => {
     const user = AuthService.getCurrentUser();
     if (user) {
       setCurrentUser(user);
     }
-  }, []);
+  };
+  useEffect(updateUserState, []);
 
   useEffect(() => {
     EventBus.on("logout", () => {
@@ -40,6 +43,7 @@ const App = () => {
     AuthService.logout();
     setCurrentUser(undefined);
   };
+
   return (
     <div>
       <nav className="navbar navbar-expand navbar-dark bg-dark">
@@ -63,6 +67,13 @@ const App = () => {
             <li className="nav-item">
               <Link to={"/usercards"} className="nav-link">
                 User Cards
+              </Link>
+            </li>
+          )}
+          {currentUser && (
+            <li className="nav-item">
+              <Link to={"/addCard"} className="nav-link">
+                Add Card
               </Link>
             </li>
           )}
@@ -98,9 +109,29 @@ const App = () => {
       <div className="container mt-3">
         <Routes>
           <Route exact path={"/"} element={<Home />} />
-          <Route exact path="/login" element={<Login />} />
+          <Route
+            exact
+            path="/login"
+            element={<Login onLoggedIn={updateUserState} />}
+          />
           <Route exact path="/register" element={<Register />} />
-          <Route exact path="/profile" element={<Profile />} />
+
+          <Route
+            exact
+            path="/profile"
+            element={<PrivateRoute currentUser={currentUser} />}
+          >
+            <Route exact path="/profile" element={<Profile />} />
+          </Route>
+
+          <Route
+            exact
+            path="/addcard"
+            element={<PrivateRoute currentUser={currentUser} />}
+          >
+            <Route exact path="/addcard" element={<AddCard />} />
+          </Route>
+
           <Route path="/user" element={<BoardUser />} />
           <Route path="/usercards" element={<UserCards />} />
         </Routes>

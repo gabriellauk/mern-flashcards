@@ -10,5 +10,13 @@ exports.userCards = async (req, res) => {
   const cards = await Card.find();
   res.status(200).json(cards);
 };
+exports.addCard = async (req, res) => {
+  const newCard = new Card({
+    frontText: req.body.frontText,
+    backText: req.body.backText,
+    active: true,
+  });
 
-
+  await newCard.save();
+  res.status(200).json(newCard);
+};
