@@ -133,7 +133,14 @@ const App = () => {
           </Route>
 
           <Route path="/user" element={<BoardUser />} />
-          <Route path="/usercards" element={<UserCards />} />
+
+          <Route
+            exact
+            path="/usercards"
+            element={<PrivateRoute currentUser={currentUser} />}
+          >
+            <Route exact path="/usercards" element={<UserCards />} />
+          </Route>
         </Routes>
       </div>
     </div>

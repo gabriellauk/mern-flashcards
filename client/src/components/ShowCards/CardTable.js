@@ -18,7 +18,7 @@ const CardTable = (props) => {
 
   // Maps all Cards to a Card component
   function cardList() {
-    return cards.map((card) => {
+    return props.cards.map((card) => {
       return (
         <CardRow
           card={card}
