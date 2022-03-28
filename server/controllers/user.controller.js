@@ -3,14 +3,17 @@ const Card = require("../models/card");
 exports.allAccess = (req, res) => {
   res.status(200).send("Public Content.");
 };
+
 exports.userBoard = (req, res) => {
   res.status(200).send("User Content.");
 };
+
 exports.userCards = async (req, res) => {
   const query = { user: req.userId };
   const cards = await Card.find(query);
   res.status(200).json(cards);
 };
+
 exports.addCard = async (req, res) => {
   const newCard = new Card({
     frontText: req.body.frontText,
@@ -28,4 +31,10 @@ exports.deleteCard = async (req, res) => {
   await card.remove();
   console.log("1 document deleted");
   res.sendStatus(200);
+};
+
+exports.getSpecificCard = async (req, res) => {
+  console.log(req.params.id);
+  const card = await Card.findById(req.params.id);
+  res.status(200).json(card);
 };

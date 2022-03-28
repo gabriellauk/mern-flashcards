@@ -19,6 +19,7 @@ import PrivateRoute from "./components/common/PrivateRoute";
 // import ViewCard from "./components/ViewCard.js";
 import UserCards from "./components/ShowCards/UserCards";
 import AddCard from "./components/AddCard/AddCard";
+import SpecificCard from "./components/ShowCards/SpecificCard";
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(AuthService.getCurrentUser());
@@ -141,6 +142,14 @@ const App = () => {
           >
             <Route exact path="/usercards" element={<UserCards />} />
           </Route>
+
+          <Route
+            exact
+            path="/card/:id"
+            element={<PrivateRoute currentUser={currentUser} />}
+          >
+            <Route exact path="/card/:id" element={<SpecificCard />} />
+          </Route>
         </Routes>
       </div>
     </div>
@@ -152,7 +161,6 @@ const App = () => {
   //       <Route path="/add" element={<CreateCard />} />
   //       <Route path="/" element={<AllCards />} />
   //       <Route path="/edit/:id" element={<EditCard />} />
-  //       <Route path="/card/:id" element={<ViewCard />} />
   //     </Routes>
   //   </div>
   // );

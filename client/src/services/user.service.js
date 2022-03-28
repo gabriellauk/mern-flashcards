@@ -30,10 +30,17 @@ const deleteCard = (id) => {
   });
 };
 
+const getSpecificCard = (idStringified) => {
+  return axios.get(API_URL + "cards" + "/" + idStringified, {
+    headers: authHeader(),
+  });
+};
+
 export default {
   getPublicContent,
   getUserBoard,
   getUserCards,
   addCard,
   deleteCard,
+  getSpecificCard,
 };

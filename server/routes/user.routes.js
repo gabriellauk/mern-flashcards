@@ -18,4 +18,9 @@ module.exports = function (app) {
     [authJwt.verifyToken],
     controller.deleteCard
   );
+  app.get(
+    "/api/test/cards/:id",
+    [authJwt.verifyToken],
+    controller.getSpecificCard
+  );
 };
