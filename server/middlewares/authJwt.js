@@ -1,5 +1,4 @@
 const jwt = require("jsonwebtoken");
-const User = require("../models/user");
 
 verifyToken = (req, res, next) => {
   let token = req.headers["x-access-token"];
@@ -11,6 +10,8 @@ verifyToken = (req, res, next) => {
       return res.status(401).send({ message: "Unauthorised!" });
     }
     req.userId = decoded.id;
+    // calls next bit of middleware if one is listed,
+    // in which you can then use req.userId
     next();
   });
 };

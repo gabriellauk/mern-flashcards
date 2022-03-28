@@ -14,6 +14,7 @@ exports.addCard = async (req, res) => {
   const newCard = new Card({
     frontText: req.body.frontText,
     backText: req.body.backText,
+    user: req.userId,
     active: true,
   });
 

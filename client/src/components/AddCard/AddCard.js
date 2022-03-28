@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 
-const AddCardContent = () => {
+import UserService from "../../services/user.service";
+import EventBus from "../common/EventBus";
+
+const AddCard = (props) => {
   const [form, setForm] = useState({
     frontText: "",
     backText: "",
@@ -18,27 +21,32 @@ const AddCardContent = () => {
 
   console.log(form);
 
+  // Create Card in the database
   async function onSubmit(e) {
     e.preventDefault();
 
-    // Create Card in the database
-
     const newCard = { ...form };
-    console.log("New Card:", newCard);
 
-    await fetch("http://localhost:5000/cards/add", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    UserService.addCard(newCard).then(
+      (response) => {
+        setForm({ frontText: "", backText: "" });
+        navigate("/");
       },
-      body: JSON.stringify(newCard),
-    }).catch((error) => {
-      window.alert(error);
-      return;
-    });
 
-    setForm({ frontText: "", backText: "" });
-    navigate("/");
+      (error) => {
+        const _errorMessage =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+        // setErrorContent(_errorMessage);
+        console.log(_errorMessage);
+        if (error.response && error.response.status === 401) {
+          EventBus.dispatch("logout");
+        }
+      }
+    );
   }
 
   return (
@@ -73,4 +81,4 @@ const AddCardContent = () => {
   );
 };
 
-export default AddCardContent;
+export default AddCard;
