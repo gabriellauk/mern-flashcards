@@ -22,3 +22,10 @@ exports.addCard = async (req, res) => {
   await newCard.save();
   res.status(200).json(newCard);
 };
+
+exports.deleteCard = async (req, res) => {
+  const card = await Card.findById(req.params.id);
+  await card.remove();
+  console.log("1 document deleted");
+  res.sendStatus(200);
+};

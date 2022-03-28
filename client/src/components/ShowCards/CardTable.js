@@ -3,17 +3,31 @@ import React from "react";
 import CardRow from "./CardRow";
 import { useState } from "react";
 
+import UserService from "../../services/user.service";
+import EventBus from "../common/EventBus";
+
 const CardTable = (props) => {
   const [cards, setCards] = useState(props.cards);
 
-  // Define function to delete a Card
   async function deleteCard(id) {
-    await fetch(`http://localhost:5000/cards/remove/${id}`, {
-      method: "DELETE",
-    });
-
-    const newCards = props.cards.filter((el) => el._id !== id);
-    setCards(newCards);
+    UserService.deleteCard(id).then(
+      (response) => {
+        props.onDelete();
+      },
+      (error) => {
+        const _errorMessage =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+        // setErrorContent(_errorMessage);
+        console.log(_errorMessage);
+        if (error.response && error.response.status === 401) {
+          EventBus.dispatch("logout");
+        }
+      }
+    );
   }
 
   // Maps all Cards to a Card component

@@ -9,7 +9,7 @@ const UserCards = () => {
   const [errorContent, setErrorContent] = useState("");
   const [cards, setCards] = useState([]);
 
-  useEffect(() => {
+  const getCards = () => {
     UserService.getUserCards().then(
       (response) => {
         setCards(response.data);
@@ -29,14 +29,14 @@ const UserCards = () => {
         }
       }
     );
-  }, []);
+  };
 
-  console.log(cards);
+  useEffect(getCards, []);
 
   return (
     <div>
       {!errorContent ? (
-        <CardTable cards={cards} />
+        <CardTable cards={cards} onDelete={getCards} />
       ) : (
         <Error errorContent={errorContent} />
       )}

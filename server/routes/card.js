@@ -24,12 +24,4 @@ cardRoutes.route("/cards/update/:id").post(async (req, res) => {
   res.json(card);
 });
 
-// Delete a Card
-cardRoutes.route("/cards/remove/:id").delete(async (req, res) => {
-  const card = await Card.findById(req.params.id);
-  await card.remove();
-  console.log("1 document deleted");
-  res.sendStatus(200);
-});
-
 module.exports = cardRoutes;
