@@ -7,7 +7,8 @@ exports.userBoard = (req, res) => {
   res.status(200).send("User Content.");
 };
 exports.userCards = async (req, res) => {
-  const cards = await Card.find();
+  const query = { user: req.userId };
+  const cards = await Card.find(query);
   res.status(200).json(cards);
 };
 exports.addCard = async (req, res) => {
