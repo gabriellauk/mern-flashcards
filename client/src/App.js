@@ -17,7 +17,7 @@ import UserCards from "./components/ShowCards/UserCards";
 import AddCard from "./components/Forms/AddCard";
 import SpecificCard from "./components/ShowCards/SpecificCard";
 import UpdateCard from "./components/Forms/UpdateCard";
-import Nav from "./components/Layout/Nav";
+import NavBar from "./components/Layout/NavBar";
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(AuthService.getCurrentUser());
@@ -45,7 +45,7 @@ const App = () => {
 
   return (
     <div>
-      <Nav logOutHandler={logOutHandler} currentUser={currentUser} />
+      <NavBar logOutHandler={logOutHandler} currentUser={currentUser} />
       <div className="container mt-3">
         <Routes>
           <Route exact path={"/"} element={<Home />} />
