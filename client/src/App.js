@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import "./css/main.min.css";
 import "./App.css";
 
 import AuthService from "./services/auth.service";
@@ -46,7 +48,7 @@ const App = () => {
   return (
     <div>
       <NavBar logOutHandler={logOutHandler} currentUser={currentUser} />
-      <div className="container mt-3">
+      <div className="container-md">
         <Routes>
           <Route exact path={"/"} element={<Home />} />
           <Route

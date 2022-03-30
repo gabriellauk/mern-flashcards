@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
@@ -88,11 +88,14 @@ const Login = (props) => {
             />
           </div>
           <div className="form-group">
-            <button className="btn btn-primary btn-block" disabled={loading}>
+            <button
+              className="btn btn-outline-primary btn-lg"
+              disabled={loading}
+            >
               {loading && (
                 <span className="spinner-border spinner-border-sm"></span>
               )}
-              <span>Login</span>
+              <span>Sign in</span>
             </button>
           </div>
           {message && (
@@ -104,6 +107,10 @@ const Login = (props) => {
           )}
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
         </Form>
+        Not registered yet?{" "}
+        <Link to={"/register"} className="nav-link">
+          Sign up here
+        </Link>
       </div>
     </div>
   );
