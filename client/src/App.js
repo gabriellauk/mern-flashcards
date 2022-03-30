@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -17,6 +17,7 @@ import UserCards from "./components/ShowCards/UserCards";
 import AddCard from "./components/Forms/AddCard";
 import SpecificCard from "./components/ShowCards/SpecificCard";
 import UpdateCard from "./components/Forms/UpdateCard";
+import Nav from "./components/Layout/Nav";
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(AuthService.getCurrentUser());
@@ -31,79 +32,20 @@ const App = () => {
 
   useEffect(() => {
     EventBus.on("logout", () => {
-      logOut();
+      logOutHandler();
     });
 
     return () => EventBus.remove("logout");
   }, []);
 
-  const logOut = () => {
+  const logOutHandler = () => {
     AuthService.logout();
     setCurrentUser(undefined);
   };
 
   return (
     <div>
-      <nav className="navbar navbar-expand navbar-dark bg-dark">
-        <Link to={"/"} className="navbar-brand">
-          Flashcards
-        </Link>
-        <div className="navbar-nav mr-auto">
-          <li className="nav-item">
-            <Link to={"/"} className="nav-link">
-              Home
-            </Link>
-          </li>
-          {currentUser && (
-            <li className="nav-item">
-              <Link to={"/user"} className="nav-link">
-                User
-              </Link>
-            </li>
-          )}
-          {currentUser && (
-            <li className="nav-item">
-              <Link to={"/usercards"} className="nav-link">
-                User Cards
-              </Link>
-            </li>
-          )}
-          {currentUser && (
-            <li className="nav-item">
-              <Link to={"/addCard"} className="nav-link">
-                Add Card
-              </Link>
-            </li>
-          )}
-        </div>
-        {currentUser ? (
-          <div className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link to={"/profile"} className="nav-link">
-                {currentUser.username}
-              </Link>
-            </li>
-            <li className="nav-item">
-              <a href="/login" className="nav-link" onClick={logOut}>
-                Log out
-              </a>
-            </li>
-          </div>
-        ) : (
-          <div className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link to={"/login"} className="nav-link">
-                Log in
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to={"/register"} className="nav-link">
-                Sign up
-              </Link>
-            </li>
-          </div>
-        )}
-      </nav>
+      <Nav logOutHandler={logOutHandler} currentUser={currentUser} />
       <div className="container mt-3">
         <Routes>
           <Route exact path={"/"} element={<Home />} />
