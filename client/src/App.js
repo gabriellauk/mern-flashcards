@@ -13,13 +13,10 @@ import BoardUser from "./components/BoardUser";
 import EventBus from "./components/common/EventBus";
 import PrivateRoute from "./components/common/PrivateRoute";
 
-// import CreateCard from "./components/CreateCard";
-// import AllCards from "./components/AllCards";
-// import EditCard from "./components/EditCard";
-// import ViewCard from "./components/ViewCard.js";
 import UserCards from "./components/ShowCards/UserCards";
-import AddCard from "./components/AddCard/AddCard";
+import AddCard from "./components/Forms/AddCard";
 import SpecificCard from "./components/ShowCards/SpecificCard";
+import UpdateCard from "./components/Forms/UpdateCard";
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(AuthService.getCurrentUser());
@@ -150,20 +147,18 @@ const App = () => {
           >
             <Route exact path="/card/:id" element={<SpecificCard />} />
           </Route>
+
+          <Route
+            exact
+            path="/edit/:id"
+            element={<PrivateRoute currentUser={currentUser} />}
+          >
+            <Route exact path="/edit/:id" element={<UpdateCard />} />
+          </Route>
         </Routes>
       </div>
     </div>
   );
-
-  // return (
-  //   <div>
-  //     <Routes>
-  //       <Route path="/add" element={<CreateCard />} />
-  //       <Route path="/" element={<AllCards />} />
-  //       <Route path="/edit/:id" element={<EditCard />} />
-  //     </Routes>
-  //   </div>
-  // );
 };
 
 export default App;

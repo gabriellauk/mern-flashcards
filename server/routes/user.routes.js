@@ -23,4 +23,9 @@ module.exports = function (app) {
     [authJwt.verifyToken],
     controller.getSpecificCard
   );
+  app.post(
+    "/api/test/cards/update/:id",
+    [authJwt.verifyToken],
+    controller.updateCard
+  );
 };

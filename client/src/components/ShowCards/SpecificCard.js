@@ -3,8 +3,6 @@ import { useParams, useNavigate } from "react-router";
 
 import UserService from "../../services/user.service";
 import EventBus from "../common/EventBus";
-import CardTable from "./CardTable";
-import Error from "./Error";
 
 const SpecificCard = (props) => {
   const [errorContent, setErrorContent] = useState("");
@@ -12,7 +10,7 @@ const SpecificCard = (props) => {
   const params = useParams();
   const navigate = useNavigate();
 
-  const [card, setCard] = useState([]);
+  const [card, setCard] = useState({});
 
   const getCard = () => {
     const id = params.id;

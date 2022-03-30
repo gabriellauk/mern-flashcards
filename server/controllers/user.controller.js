@@ -28,6 +28,9 @@ exports.addCard = async (req, res) => {
 
 exports.deleteCard = async (req, res) => {
   const card = await Card.findById(req.params.id);
+  if (!card.user.equals(req.userId)) {
+    return res.sendStatus(403);
+  }
   await card.remove();
   console.log("1 document deleted");
   res.sendStatus(200);
@@ -36,5 +39,25 @@ exports.deleteCard = async (req, res) => {
 exports.getSpecificCard = async (req, res) => {
   console.log(req.params.id);
   const card = await Card.findById(req.params.id);
+  if (!card.user.equals(req.userId)) {
+    return res.sendStatus(403);
+  }
+  res.status(200).json(card);
+};
+
+exports.updateCard = async (req, res) => {
+  const card = await Card.findById(req.params.id);
+  if (!card.user.equals(req.userId)) {
+    return res.sendStatus(403);
+  }
+  const newValues = {
+    frontText: req.body.frontText,
+    backText: req.body.backText,
+    active: req.body.active,
+  };
+
+  card.set(newValues);
+  await card.save();
+
   res.status(200).json(card);
 };

@@ -25,15 +25,26 @@ const addCard = (reqBody) => {
 };
 
 const deleteCard = (id) => {
-  return axios.delete(API_URL + "deleteCard" + "/" + id, {
+  return axios.delete(API_URL + "deleteCard/" + id, {
     headers: authHeader(),
   });
 };
 
 const getSpecificCard = (idStringified) => {
-  return axios.get(API_URL + "cards" + "/" + idStringified, {
+  return axios.get(API_URL + "cards/" + idStringified, {
     headers: authHeader(),
   });
+};
+
+const updateCard = (idStringified, reqBody) => {
+  const myAuthHeader = authHeader();
+
+  const headers = {
+    ...myAuthHeader,
+    "Content-Type": "application/json",
+  };
+
+  return axios.post(API_URL +  "cards/update/" + idStringified, reqBody, { headers });
 };
 
 export default {
@@ -43,4 +54,5 @@ export default {
   addCard,
   deleteCard,
   getSpecificCard,
+  updateCard
 };

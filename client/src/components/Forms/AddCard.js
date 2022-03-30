@@ -19,8 +19,6 @@ const AddCard = (props) => {
     });
   }
 
-  console.log(form);
-
   // Create Card in the database
   async function onSubmit(e) {
     e.preventDefault();
