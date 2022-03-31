@@ -3,21 +3,18 @@ import { Link } from "react-router-dom";
 
 // Define table row for each Card
 const CardRow = (props) => (
-  <tr>
-    <td>{props.card.frontText}</td>
-    <td>{props.card.backText}</td>
-    <td>{props.card["_id"]}</td>
-    <td>
-      <Link to={`/edit/${props.card["_id"]}`}>Edit</Link> |
-      <button
-        onClick={() => {
-          props.deleteCard(props.card["_id"]);
-        }}
-      >
-        Delete
-      </button>
-    </td>
-  </tr>
+  <React.Fragment>
+    <div className="col-lg-4 col-md-6">
+      <div className="card rounded h-100 p-4">
+        <div className="pull-right">
+          <Link to={`/edit/${props.card["_id"]}`}>
+            <i className="bi bi-pencil-fill fs-4 float-end link-dark"></i>
+          </Link>
+        </div>
+        <div className="card-body text-center py-4">{props.card.frontText}</div>
+      </div>
+    </div>
+  </React.Fragment>
 );
 
 export default CardRow;

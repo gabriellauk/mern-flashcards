@@ -5,7 +5,7 @@ import EventBus from "../common/EventBus";
 import CardTable from "./CardTable";
 import Error from "./Error";
 
-const UserCards = () => {
+const UserCards = (props) => {
   const [errorContent, setErrorContent] = useState("");
   const [cards, setCards] = useState([]);
 
@@ -35,8 +35,9 @@ const UserCards = () => {
 
   return (
     <div>
+      
       {!errorContent ? (
-        <CardTable cards={cards} onDelete={getCards} />
+        <CardTable cards={cards} onDelete={getCards} currentUser={props.currentUser} />
       ) : (
         <Error errorContent={errorContent} />
       )}

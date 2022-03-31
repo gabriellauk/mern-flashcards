@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import CardRow from "./CardRow";
 import { useState } from "react";
@@ -44,20 +45,40 @@ const CardTable = (props) => {
   }
 
   return (
-    <div>
-      <h3>Card List</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>frontText</th>
-            <th>backText</th>
-            <th>ID</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>{cardList()}</tbody>
-      </table>
-    </div>
+    <React.Fragment>
+      <section className="container py-5">
+        <h2 className="display-5 text-white py-2">
+          Welcome to Lightning Fast, an online learning tool to help you
+          memorise new concepts.
+        </h2>
+        <div className="d-grid gap-4 d-md-block">
+          <button type="button" className="btn btn-dark px-3 me-3">
+            <i className="bi bi-play-circle-fill fs-3"></i>
+            <span className="fs-3"> Start session</span>
+          </button>
+          <button type="button" className="btn btn-dark px-3 me-3">
+            <i className="bi bi-plus-circle-fill fs-3"></i>
+            <span className="fs-3"> Add new card</span>
+          </button>
+        </div>
+      </section>
+
+      <section className="container py-4">
+        <h3 className="text-white pb-2">Manage cards</h3>
+        <div className="form-check form-switch">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id="flexSwitchCheckDefault"
+          />
+          <label className="form-check-label" for="flexSwitchCheckDefault">
+            Show inactive cards too
+          </label>
+        </div>
+
+        <div className="row gy-4">{cardList()}</div>
+      </section>
+    </React.Fragment>
   );
 };
 
