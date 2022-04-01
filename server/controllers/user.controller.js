@@ -32,12 +32,10 @@ exports.deleteCard = async (req, res) => {
     return res.sendStatus(403);
   }
   await card.remove();
-  console.log("1 document deleted");
   res.sendStatus(200);
 };
 
 exports.getSpecificCard = async (req, res) => {
-  console.log(req.params.id);
   const card = await Card.findById(req.params.id);
   if (!card.user.equals(req.userId)) {
     return res.sendStatus(403);

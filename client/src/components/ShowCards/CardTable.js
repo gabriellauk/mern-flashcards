@@ -72,7 +72,7 @@ const CardTable = (props) => {
             type="checkbox"
             id="flexSwitchCheckDefault"
           />
-          <label className="form-check-label" for="flexSwitchCheckDefault">
+          <label className="form-check-label" htmlFor="flexSwitchCheckDefault">
             Show inactive cards too
           </label>
         </div>

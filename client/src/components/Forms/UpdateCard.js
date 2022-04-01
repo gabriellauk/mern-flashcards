@@ -49,7 +49,7 @@ const UpdateCard = (props) => {
   async function deleteCard() {
     UserService.deleteCard(params.id).then(
       (response) => {
-        navigate("/");
+        navigate("/usercards");
       },
       (error) => {
         const _errorMessage =
@@ -77,7 +77,7 @@ const UpdateCard = (props) => {
 
     UserService.updateCard(id, updatedCard).then(
       (response) => {
-        navigate("/");
+        navigate("/usercards");
       },
 
       (error) => {
@@ -97,54 +97,73 @@ const UpdateCard = (props) => {
   }
 
   return (
-    <div>
-      <h3>Edit Card</h3>
-
-      <button
-        onClick={deleteCard}
-      >
-        Delete
-      </button>
-
-      <form onSubmit={onSubmit}>
-        <div>
-          <label htmlFor="frontText">Question: </label>
-          <input
-            type="text"
-            id="frontText"
-            value={form.frontText}
-            onChange={(e) => updateForm({ frontText: e.target.value })}
-          />
-        </div>
-        <div>
-          <label htmlFor="position">Answer: </label>
-          <input
-            type="text"
-            id="backText"
-            value={form.backText}
-            onChange={(e) => updateForm({ backText: e.target.value })}
-          />
+    <React.Fragment>
+      <div className="row gy-4">
+        <div className="col-lg-6 col-md-12 row gy-4 mt-0 mx-auto">
+          <section className="container pt-5">
+            <h2 className="display-5 text-white text-center">Edit flashcard</h2>
+            <button onClick={deleteCard}>Delete</button>
+          </section>
         </div>
 
-        <div>
-          <label htmlFor="active">
-            Active?
-            <input
-              type="checkbox"
-              id="active"
-              checked={form.active}
-              onChange={(e) => updateForm({ active: e.target.checked })}
-            />
-          </label>
-        </div>
+        <form onSubmit={onSubmit}>
+          <div className="col-lg-6 col-md-12 row gy-4 mt-0 mx-auto">
+            <div className="card rounded custom-form-card-height p-4">
+              <div className="card-body text-center py-4">
+                <label htmlFor="frontText" className="display-6 pb-2">
+                  QUESTION
+                </label>
+                <textarea
+                  type="text"
+                  id="frontText"
+                  maxLength="300"
+                  autoFocus={true}
+                  value={form.frontText}
+                  className={(["h-100"], ["border-0"])}
+                  onChange={(e) => updateForm({ frontText: e.target.value })}
+                />
+              </div>
+            </div>
 
-        <br />
+            <div className="card rounded custom-form-card-height p-4">
+              <div className="card-body text-center py-4">
+                <label htmlFor="backText" className="display-6 pb-2">
+                  ANSWER
+                </label>
+                <textarea
+                  type="text"
+                  id="backText"
+                  maxLength="300"
+                  value={form.backText}
+                  className={(["h-100"], ["border-0"])}
+                  onChange={(e) => updateForm({ backText: e.target.value })}
+                />
+              </div>
+            </div>
 
-        <div>
-          <input type="submit" value="Save" />
-        </div>
-      </form>
-    </div>
+            <div>
+              <label htmlFor="active">
+                Active?
+                <input
+                  type="checkbox"
+                  id="active"
+                  checked={form.active}
+                  onChange={(e) => updateForm({ active: e.target.checked })}
+                />
+              </label>
+            </div>
+
+            <button
+              type="submit"
+              className="btn btn-dark px-3 fs-3"
+              value="Save"
+            >
+              SAVE
+            </button>
+          </div>
+        </form>
+      </div>
+    </React.Fragment>
   );
 };
 
