@@ -48,34 +48,62 @@ const AddCard = (props) => {
   }
 
   return (
-    <div>
-      <h3>Add New Card</h3>
+    <React.Fragment>
       <form onSubmit={onSubmit}>
-        <div className="form-group">
-          <label htmlFor="frontText">Question</label>
-          <input
-            type="text"
-            className="form-control"
-            id="frontText"
-            value={form.frontText}
-            onChange={(e) => updateForm({ frontText: e.target.value })}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="backText">Answer</label>
-          <input
-            type="text"
-            className="form-control"
-            id="backText"
-            value={form.backText}
-            onChange={(e) => updateForm({ backText: e.target.value })}
-          />
-        </div>
-        <div className="form-group">
-          <input type="submit" value="Add" className="btn btn-primary" />
+        <div className="row gy-4 justify-content-center">
+          <section className="container pt-5">
+            <h2 className="display-5 text-white text-center">
+              Add new flashcard
+            </h2>
+          </section>
+
+          <div className="col-lg-6 col-md-12 row gy-4 mt-0">
+            <div className="card rounded custom-form-card-height p-4">
+              <div className="card-body text-center py-4">
+                <label htmlFor="frontText" className="display-6 pb-2">
+                  QUESTION
+                </label>
+                <textarea
+                  type="text"
+                  id="frontText"
+                  placeholder="Type here..."
+                  maxLength="300"
+                  autoFocus={true}
+                  value={form.frontText}
+                  className={(["h-100"], ["border-0"])}
+                  onChange={(e) => updateForm({ frontText: e.target.value })}
+                />
+              </div>
+            </div>
+
+            <div className="card rounded custom-form-card-height p-4">
+              <div className="card-body text-center py-4">
+                <label htmlFor="backText" className="display-6 pb-2">
+                  ANSWER
+                </label>
+                <textarea
+                  type="text"
+                  id="backText"
+                  placeholder="Type here..."
+                  maxLength="300"
+                  value={form.backText}
+                  className={(["h-100"], ["border-0"])}
+                  onChange={(e) => updateForm({ backText: e.target.value })}
+                />
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              className="btn btn-dark px-3 fs-3"
+              value="Save"
+            >
+              SAVE
+            </button>
+          </div>
         </div>
       </form>
-    </div>
+    </React.Fragment>
   );
 };
 

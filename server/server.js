@@ -10,7 +10,6 @@ app.use(cors(corsOptions));
 app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
-app.use(require("./routes/card"));
 
 // routes
 require('./routes/auth.routes')(app);

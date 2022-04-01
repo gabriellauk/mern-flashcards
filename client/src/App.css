@@ -27,3 +27,26 @@ label {
   -webkit-border-radius: 50%;
   border-radius: 50%;
 }
+
+.custom-form-card-height {
+  height: 300px;
+}
+
+.custom-card-listings-height {
+  min-height: 263px;
+}
+
+textarea {
+  width: 100%;
+  height: 80%;
+  resize: none;
+}
+
+textarea:focus { 
+  border: 0.5px;
+  outline: none;
+}
+
+textarea::placeholder {
+  color: #cccccc;
+}

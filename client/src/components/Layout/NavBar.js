@@ -8,7 +8,7 @@ const Nav = (props) => {
         <div className="container-xxl">
           <Link to={"#"} className="navbar-brand">
             <i className="bi bi-lightning fs-2"> </i>
-            <span className="fw-medium fs-2">Lightning Fast</span>
+            <span className="fw-medium fs-2">Flashcards</span>
           </Link>
           <div className="navbar-nav ml-auto">
             {props.currentUser && (

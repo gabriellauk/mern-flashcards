@@ -48,17 +48,18 @@ const CardTable = (props) => {
     <React.Fragment>
       <section className="container py-5">
         <h2 className="display-5 text-white py-2">
-          Welcome to Lightning Fast, an online learning tool to help you
-          memorise new concepts.
+          Welcome to Flashcards, an online learning tool to help you memorise
+          new concepts.
         </h2>
+
         <div className="d-grid gap-4 d-md-block">
-          <button type="button" className="btn btn-dark px-3 me-3">
-            <i className="bi bi-play-circle-fill fs-3"></i>
-            <span className="fs-3"> Start session</span>
+          <button type="button" className="btn btn-dark px-3 me-3 fs-3">
+            <i className="bi bi-play-circle-fill"></i>
+            <span> Start session</span>
           </button>
-          <button type="button" className="btn btn-dark px-3 me-3">
-            <i className="bi bi-plus-circle-fill fs-3"></i>
-            <span className="fs-3"> Add new card</span>
+          <button type="button" className="btn btn-dark px-3 me-3 fs-3">
+            <i className="bi bi-plus-circle-fill"></i>
+            <span> Add new card</span>
           </button>
         </div>
       </section>
