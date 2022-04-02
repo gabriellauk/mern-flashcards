@@ -52,32 +52,61 @@ const CardTable = (props) => {
           new concepts.
         </h2>
 
-        <div className="d-grid gap-4 d-md-block">
-          <button type="button" className="btn btn-dark px-3 me-3 fs-3">
-            <i className="bi bi-play-circle-fill"></i>
-            <span> Start session</span>
-          </button>
-          <button type="button" className="btn btn-dark px-3 me-3 fs-3">
-            <i className="bi bi-plus-circle-fill"></i>
-            <span> Add new card</span>
-          </button>
+        <div className="row gy-2">
+          <div className="col-md-auto">
+            <button type="button" className="btn btn-dark px-3 fs-3 button-100">
+              <i className="bi bi-play-circle-fill"></i>
+              <span> Start session</span>
+            </button>
+          </div>
+          <div className="col-md-auto">
+            <button type="button" className="btn btn-dark px-3 fs-3 button-100">
+              <i className="bi bi-plus-circle-fill"></i>
+              <span> Manage cards</span>
+            </button>
+          </div>
         </div>
       </section>
 
-      <section className="container py-4">
-        <h3 className="text-white pb-2">Manage cards</h3>
-        <div className="form-check form-switch">
-          <input
-            className="form-check-input"
-            type="checkbox"
-            id="flexSwitchCheckDefault"
-          />
-          <label className="form-check-label" htmlFor="flexSwitchCheckDefault">
-            Show inactive cards too
-          </label>
+      <section className="row py-4">
+        <div className="col-12">
+          <h3 className="text-white pb-2">Manage cards</h3>
         </div>
 
-        <div className="row gy-4">{cardList()}</div>
+        
+
+        <div className="row m-1">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a
+                class="nav-link active text-white fs-5"
+                aria-current="page"
+                href="#"
+              >
+                Active
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white fs-5" href="#">
+                Inactive
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div className="row gy-4 m-1">
+          <div className="col-lg-4 col-md-6">
+            <div className="card rounded custom-card-listings-height p-4">
+              <div className="card-body text-center pb-1 px-0 pt-0 fs-1">
+                <div className="align-middle">
+                <i className="bi bi-plus-circle-fill align-middle"></i>
+                <span className="align-middle"> NEW CARD</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {cardList()}
+        </div>
       </section>
     </React.Fragment>
   );
