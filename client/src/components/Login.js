@@ -39,7 +39,7 @@ const Login = (props) => {
       AuthService.login(username, password).then(
         () => {
           props.onLoggedIn();
-          navigate("/profile");
+          navigate("/welcome");
         },
         (error) => {
           const resMessage =

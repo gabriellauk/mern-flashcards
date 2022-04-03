@@ -44,7 +44,13 @@ const updateCard = (idStringified, reqBody) => {
     "Content-Type": "application/json",
   };
 
-  return axios.post(API_URL +  "cards/update/" + idStringified, reqBody, { headers });
+  return axios.post(API_URL + "cards/update/" + idStringified, reqBody, {
+    headers,
+  });
+};
+
+const getWelcome = () => {
+  return axios.get(API_URL + "welcome", { headers: authHeader() });
 };
 
 export default {
@@ -54,5 +60,6 @@ export default {
   addCard,
   deleteCard,
   getSpecificCard,
-  updateCard
+  updateCard,
+  getWelcome
 };

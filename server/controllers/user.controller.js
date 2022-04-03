@@ -8,6 +8,10 @@ exports.userBoard = (req, res) => {
   res.status(200).send("User Content.");
 };
 
+exports.welcome = (req, res) => {
+  res.status(200);
+};
+
 exports.userCards = async (req, res) => {
   const query = { user: req.userId };
   const cards = await Card.find(query);

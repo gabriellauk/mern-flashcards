@@ -28,4 +28,5 @@ module.exports = function (app) {
     [authJwt.verifyToken],
     controller.updateCard
   );
+  app.get("/api/test/welcome", [authJwt.verifyToken], controller.welcome);
 };
