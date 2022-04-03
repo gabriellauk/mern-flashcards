@@ -76,18 +76,18 @@ const CardTable = (props) => {
         
 
         <div className="row m-1">
-          <ul class="nav nav-tabs">
-            <li class="nav-item">
+          <ul className="nav nav-tabs">
+            <li className="nav-item">
               <a
-                class="nav-link active text-white fs-5"
+                className="nav-link active text-white fs-5"
                 aria-current="page"
                 href="#"
               >
                 Active
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link text-white fs-5" href="#">
+            <li className="nav-item">
+              <a className="nav-link text-white fs-5" href="#">
                 Inactive
               </a>
             </li>
@@ -96,8 +96,8 @@ const CardTable = (props) => {
         <div className="row gy-4 m-1">
           <div className="col-lg-4 col-md-6">
             <div className="card rounded custom-card-listings-height p-4">
-              <div className="card-body text-center pb-1 px-0 pt-0 fs-1">
-                <div className="align-middle">
+              <div className="card-body d-flex justify-content-center pb-1 px-0 pt-0 fs-1">
+                <div className="align-self-center">
                 <i className="bi bi-plus-circle-fill align-middle"></i>
                 <span className="align-middle"> NEW CARD</span>
                 </div>
