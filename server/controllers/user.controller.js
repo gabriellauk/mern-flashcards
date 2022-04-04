@@ -12,8 +12,14 @@ exports.welcome = (req, res) => {
   res.status(200);
 };
 
-exports.userCards = async (req, res) => {
-  const query = { user: req.userId };
+exports.activeCards = async (req, res) => {
+  const query = { user: req.userId, active: true };
+  const cards = await Card.find(query);
+  res.status(200).json(cards);
+};
+
+exports.inactiveCards = async (req, res) => {
+  const query = { user: req.userId, active: false };
   const cards = await Card.find(query);
   res.status(200).json(cards);
 };

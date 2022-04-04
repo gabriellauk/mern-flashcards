@@ -11,7 +11,8 @@ module.exports = function (app) {
   });
   app.get("/api/test/all", controller.allAccess);
   app.get("/api/test/user", [authJwt.verifyToken], controller.userBoard);
-  app.get("/api/test/userCards", [authJwt.verifyToken], controller.userCards);
+  app.get("/api/test/activeCards", [authJwt.verifyToken], controller.activeCards);
+  app.get("/api/test/inactiveCards", [authJwt.verifyToken], controller.inactiveCards);
   app.post("/api/test/addCard", [authJwt.verifyToken], controller.addCard);
   app.delete(
     "/api/test/deleteCard/:id",

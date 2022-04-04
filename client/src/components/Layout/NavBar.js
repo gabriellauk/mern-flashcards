@@ -19,7 +19,7 @@ const Nav = (props) => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to={"/userCards"} className="nav-link">
+                  <Link to={"/manage-active-cards"} className="nav-link">
                     <i className="bi bi-gear-fill fs-2"></i>
                   </Link>
                 </li>

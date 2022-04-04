@@ -1,14 +1,41 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-import CardRow from "./CardRow";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+import { Link } from "react-router-dom";
 
 import UserService from "../../services/user.service";
 import EventBus from "../common/EventBus";
 
-const CardTable = (props) => {
-  const [cards, setCards] = useState(props.cards);
+import InactiveCardItem from "./InactiveCardItem";
+
+const InactiveCardsList = (props) => {
+  const [errorContent, setErrorContent] = useState("");
+  const [inactiveCards, setInactiveCards] = useState([]);
+
+  const getInactiveCards = () => {
+    UserService.getInactiveCards().then(
+      (response) => {
+        setInactiveCards(response.data);
+      },
+
+      (error) => {
+        const _errorMessage =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+        setErrorContent(_errorMessage);
+        console.log(_errorMessage);
+        if (error.response && error.response.status === 401) {
+          EventBus.dispatch("logout");
+        }
+      }
+    );
+  };
+
+  useEffect(getInactiveCards, []);
 
   async function deleteCard(id) {
     UserService.deleteCard(id).then(
@@ -33,9 +60,9 @@ const CardTable = (props) => {
 
   // Maps all Cards to a Card component
   function cardList() {
-    return props.cards.map((card) => {
+    return inactiveCards.map((card) => {
       return (
-        <CardRow
+        <InactiveCardItem
           card={card}
           deleteCard={() => deleteCard(card["_id"])}
           key={card["_id"]}
@@ -46,50 +73,33 @@ const CardTable = (props) => {
 
   return (
     <React.Fragment>
-      
-
       <section className="row py-4">
         <div className="col-12">
           <h3 className="text-white pb-2">Manage cards</h3>
         </div>
 
-        
-
         <div className="row m-1">
           <ul className="nav nav-tabs">
             <li className="nav-item">
-              <a
-                className="nav-link active text-white fs-5"
+              <Link
+                to={"/manage-active-cards"}
+                className="nav-link text-white fs-5"
                 aria-current="page"
-                href="#"
               >
                 Active
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link text-white fs-5" href="#">
+              <a className="nav-link active text-white fs-5" href="#">
                 Inactive
               </a>
             </li>
           </ul>
         </div>
-        <div className="row gy-4 m-1">
-          <div className="col-lg-4 col-md-6">
-            <div className="card rounded custom-card-listings-height p-4">
-              <div className="card-body d-flex justify-content-center pb-1 px-0 pt-0 fs-1">
-                <div className="align-self-center">
-                <i className="bi bi-plus-circle-fill align-middle"></i>
-                <span className="align-middle"> NEW CARD</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {cardList()}
-        </div>
+        <div className="row gy-4 m-1">{cardList()}</div>
       </section>
     </React.Fragment>
   );
 };
 
-export default CardTable;
+export default InactiveCardsList;

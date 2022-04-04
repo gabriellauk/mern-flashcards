@@ -9,8 +9,12 @@ const getPublicContent = () => {
 const getUserBoard = () => {
   return axios.get(API_URL + "user", { headers: authHeader() });
 };
-const getUserCards = () => {
-  return axios.get(API_URL + "userCards", { headers: authHeader() });
+const getActiveCards = () => {
+  return axios.get(API_URL + "activeCards", { headers: authHeader() });
+};
+
+const getInactiveCards = () => {
+  return axios.get(API_URL + "inactiveCards", { headers: authHeader() });
 };
 
 const addCard = (reqBody) => {
@@ -56,7 +60,8 @@ const getWelcome = () => {
 export default {
   getPublicContent,
   getUserBoard,
-  getUserCards,
+  getActiveCards,
+  getInactiveCards,
   addCard,
   deleteCard,
   getSpecificCard,

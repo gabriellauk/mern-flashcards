@@ -49,7 +49,7 @@ const UpdateCard = (props) => {
   async function deleteCard() {
     UserService.deleteCard(params.id).then(
       (response) => {
-        navigate("/usercards");
+        navigate("/manage-active-cards");
       },
       (error) => {
         const _errorMessage =
@@ -77,7 +77,7 @@ const UpdateCard = (props) => {
 
     UserService.updateCard(id, updatedCard).then(
       (response) => {
-        navigate("/usercards");
+        navigate("/manage-active-cards");
       },
 
       (error) => {

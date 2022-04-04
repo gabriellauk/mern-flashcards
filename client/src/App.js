@@ -16,6 +16,7 @@ import EventBus from "./components/common/EventBus";
 import PrivateRoute from "./components/common/PrivateRoute";
 
 import UserCards from "./components/ShowCards/UserCards";
+import InactiveCardsList from "./components/ShowCards/InactiveCardsList";
 import AddCard from "./components/Forms/AddCard";
 import SpecificCard from "./components/ShowCards/SpecificCard";
 import UpdateCard from "./components/Forms/UpdateCard";
@@ -87,10 +88,18 @@ const App = () => {
 
           <Route
             exact
-            path="/usercards"
+            path="/manage-active-cards"
             element={<PrivateRoute currentUser={currentUser} />}
           >
-            <Route exact path="/usercards" element={<UserCards />} />
+            <Route exact path="/manage-active-cards" element={<UserCards />} />
+          </Route>
+
+          <Route
+            exact
+            path="/manage-inactive-cards"
+            element={<PrivateRoute currentUser={currentUser} />}
+          >
+            <Route exact path="/manage-inactive-cards" element={<InactiveCardsList />} />
           </Route>
 
           <Route

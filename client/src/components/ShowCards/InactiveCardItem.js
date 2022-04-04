@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-// Define table row for each Card
-const CardRow = (props) => (
+const InactiveCardItem = (props) => (
   <React.Fragment>
     <div className="col-lg-4 col-md-6">
       <div className="card rounded custom-card-listings-height p-4">
@@ -17,4 +16,4 @@ const CardRow = (props) => (
   </React.Fragment>
 );
 
-export default CardRow;
+export default InactiveCardItem;

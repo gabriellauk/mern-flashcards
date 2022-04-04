@@ -2,17 +2,17 @@ import React, { useEffect, useState } from "react";
 
 import UserService from "../../services/user.service";
 import EventBus from "../common/EventBus";
-import CardTable from "./CardTable";
+import ActiveCardsList from "./ActiveCardsList";
 import Error from "./Error";
 
 const UserCards = (props) => {
   const [errorContent, setErrorContent] = useState("");
-  const [cards, setCards] = useState([]);
+  const [activeCards, setActiveCards] = useState([]);
 
-  const getCards = () => {
-    UserService.getUserCards().then(
+  const getActiveCards = () => {
+    UserService.getActiveCards().then(
       (response) => {
-        setCards(response.data);
+        setActiveCards(response.data);
       },
 
       (error) => {
@@ -31,13 +31,13 @@ const UserCards = (props) => {
     );
   };
 
-  useEffect(getCards, []);
+  useEffect(getActiveCards, []);
 
   return (
     <div>
       
       {!errorContent ? (
-        <CardTable cards={cards} onDelete={getCards} currentUser={props.currentUser} />
+        <ActiveCardsList activeCards={activeCards} onDelete={getActiveCards} currentUser={props.currentUser} />
       ) : (
         <Error errorContent={errorContent} />
       )}
