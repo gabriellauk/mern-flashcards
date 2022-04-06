@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-// import "bootstrap/dist/css/bootstrap.min.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import "./css/main.min.css";
 import "./App.css";
@@ -22,6 +21,7 @@ import SpecificCard from "./components/ShowCards/SpecificCard";
 import UpdateCard from "./components/Forms/UpdateCard";
 import NavBar from "./components/Layout/NavBar";
 import Welcome from "./components/Welcome";
+import CardSession from "./components/ShowCards/CardSession";
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(AuthService.getCurrentUser());
@@ -117,6 +117,15 @@ const App = () => {
           >
             <Route exact path="/edit/:id" element={<UpdateCard />} />
           </Route>
+
+          <Route
+            exact
+            path="/card-session"
+            element={<PrivateRoute currentUser={currentUser} />}
+          >
+            <Route exact path="/card-session" element={<CardSession />} />
+          </Route>
+
         </Routes>
       </div>
     </div>

@@ -77,7 +77,7 @@ const ActiveCardsList = (props) => {
             <div className="card rounded custom-card-listings-height p-4">
               <div className="card-body d-flex justify-content-center pb-1 px-0 pt-0 fs-1">
                 <div className="align-self-center">
-                  <i className="bi bi-plus-circle-fill align-middle"></i>
+                  <i className="bi bi-plus-circle-fill align-middle" title="Add new card"></i>
                   <span className="align-middle"> NEW CARD</span>
                 </div>
               </div>

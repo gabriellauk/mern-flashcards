@@ -13,18 +13,18 @@ const Nav = (props) => {
           <div className="navbar-nav ml-auto">
             {props.currentUser && (
               <React.Fragment>
-                <li className="nav-item">
-                  <Link to={"/user"} className="nav-link">
+                <li className="nav-item" title="Start session">
+                  <Link to={"/card-session"} className="nav-link">
                     <i className="bi bi-play-circle-fill fs-2"></i>
                   </Link>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item" title="Manage cards">
                   <Link to={"/manage-active-cards"} className="nav-link">
-                    <i className="bi bi-gear-fill fs-2"></i>
+                    <i className="bi bi-pencil-square fs-2"></i>
                   </Link>
                 </li>
 
-                <li className="nav-item">
+                <li className="nav-item" title="Log out">
                   <a
                     href="/login"
                     className="nav-link"

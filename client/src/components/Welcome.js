@@ -27,13 +27,13 @@ const Welcome = () => {
         <div className="row gy-2">
           <div className="col-md-auto">
             <button type="button" className="btn btn-dark px-3 fs-3 button-100">
-              <i className="bi bi-play-circle-fill"></i>
+              <i className="bi bi-play-circle-fill" title="Start session"></i>
               <span> Start session</span>
             </button>
           </div>
           <div className="col-md-auto">
             <button type="button" className="btn btn-dark px-3 fs-3 button-100">
-              <i className="bi bi-plus-circle-fill"></i>
+              <i className="bi bi-pencil-square" title="Manage cards"></i>
               <span> Manage cards</span>
             </button>
           </div>
