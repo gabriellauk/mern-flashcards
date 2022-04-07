@@ -36,6 +36,10 @@ label {
   min-height: 263px;
 }
 
+.custom-card-session-height {
+  min-height: 700px;
+}
+
 textarea {
   width: 100%;
   height: 80%;

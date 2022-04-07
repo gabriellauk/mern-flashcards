@@ -21,7 +21,7 @@ import SpecificCard from "./components/ShowCards/SpecificCard";
 import UpdateCard from "./components/Forms/UpdateCard";
 import NavBar from "./components/Layout/NavBar";
 import Welcome from "./components/Welcome";
-import CardSession from "./components/ShowCards/CardSession";
+import CardSession from "./components/CardSession/CardSession";
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(AuthService.getCurrentUser());
@@ -78,10 +78,10 @@ const App = () => {
 
           <Route
             exact
-            path="/addcard"
+            path="/add-card"
             element={<PrivateRoute currentUser={currentUser} />}
           >
-            <Route exact path="/addcard" element={<AddCard />} />
+            <Route exact path="/add-card" element={<AddCard />} />
           </Route>
 
           <Route path="/user" element={<BoardUser />} />

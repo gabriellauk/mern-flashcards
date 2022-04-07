@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import UserService from "../../services/user.service";
 import EventBus from "../common/EventBus";
 
+import CardFront from "./CardFront";
+
 const CardSession = (props) => {
   const [errorContent, setErrorContent] = useState("");
   const [activeCards, setActiveCards] = useState([]);
@@ -64,18 +66,11 @@ const CardSession = (props) => {
   };
 
   return (
-    <table>
-      <tbody>
-        <tr>
-          <td>{displayedCard.frontText}</td>
-          <td>{displayedCard.backText}</td>
-          <td>
-            {displayedCard["_id"]}
-            <button onClick={() => configureNextCard(activeCards)}>Next</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <CardFront
+      displayedCard={displayedCard}
+      configureNextCard={configureNextCard}
+      activeCards={activeCards}
+    ></CardFront>
   );
 };
 

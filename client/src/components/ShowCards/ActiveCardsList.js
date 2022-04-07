@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import ActiveCardItem from "./ActiveCardItem";
 import { useState } from "react";
@@ -44,6 +44,12 @@ const ActiveCardsList = (props) => {
     });
   }
 
+   const navigate = useNavigate();
+
+  const goToAddCard = () => {
+    navigate("../../add-card")
+  }
+
   return (
     <React.Fragment>
       <section className="row py-4">
@@ -74,7 +80,7 @@ const ActiveCardsList = (props) => {
         </div>
         <div className="row gy-4 m-1">
           <div className="col-lg-4 col-md-6">
-            <div className="card rounded custom-card-listings-height p-4">
+            <div className="card rounded custom-card-listings-height p-4" onClick={goToAddCard}>
               <div className="card-body d-flex justify-content-center pb-1 px-0 pt-0 fs-1">
                 <div className="align-self-center">
                   <i className="bi bi-plus-circle-fill align-middle" title="Add new card"></i>
