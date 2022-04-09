@@ -48,9 +48,10 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div className="d-flex flex-column vh-100">
+      
       <NavBar logOutHandler={logOutHandler} currentUser={currentUser} />
-      <div className="container-md">
+      <div className="container-md container-fluid flex-fill">
         <Routes>
           <Route exact path={"/"} element={<Home />} />
           <Route
@@ -127,6 +128,7 @@ const App = () => {
           </Route>
 
         </Routes>
+        
       </div>
     </div>
   );
