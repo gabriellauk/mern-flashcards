@@ -3,12 +3,13 @@ import React, { useEffect, useState } from "react";
 import UserService from "../../services/user.service";
 import EventBus from "../common/EventBus";
 
-import CardFront from "./CardFront";
+import Card from "./Card";
 
 const CardSession = (props) => {
   const [errorContent, setErrorContent] = useState("");
   const [activeCards, setActiveCards] = useState([]);
-  const [displayedCard, setDisplayedCard] = useState({});
+  const [displayedCard, setDisplayedCard] = useState(null);
+  const [cardFront, setCardFront] = useState(true);
 
   const loadActiveCards = () => {
     UserService.getActiveCards().then(
@@ -56,22 +57,28 @@ const CardSession = (props) => {
 
   const configureNextCard = (cards) => {
     if (cards.length === 0) {
+      console.log("ran out");
       return;
     }
 
     const [card, ...otherCards] = cards;
+
     setActiveCards(otherCards);
 
     setDisplayedCard(card);
   };
 
-  return (
-    <CardFront
-      displayedCard={displayedCard}
-      configureNextCard={configureNextCard}
-      activeCards={activeCards}
-    ></CardFront>
-  );
+  if (displayedCard !== null) {
+    return (
+      <Card
+        displayedCard={displayedCard}
+        configureNextCard={configureNextCard}
+        activeCards={activeCards}
+        cardFront={cardFront}
+      ></Card>
+    );
+  }
+  return <div></div>;
 };
 
 export default CardSession;
