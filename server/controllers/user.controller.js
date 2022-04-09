@@ -69,3 +69,18 @@ exports.updateCard = async (req, res) => {
 
   res.status(200).json(card);
 };
+
+exports.updateCardStatus = async (req, res) => {
+  const card = await Card.findById(req.params.id);
+  if (!card.user.equals(req.userId)) {
+    return res.sendStatus(403);
+  }
+  const newValue = {
+    active: req.body.active,
+  };
+
+  card.set(newValue);
+  await card.save();
+
+  res.status(200).json(card);
+};

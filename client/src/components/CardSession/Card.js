@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 
+import UserService from "../../services/user.service";
+import EventBus from "../common/EventBus";
+
 const Card = (props) => {
   const [cardFront, setCardFront] = useState(props.cardFront);
 
@@ -11,6 +14,33 @@ const Card = (props) => {
     setCardFront(true);
     props.configureNextCard(props.activeCards);
   };
+
+  // Update Card in the database
+  async function hideCard() {
+    const id = props.displayedCard._id;
+
+    const updatedCardStatus = { active: false };
+
+    UserService.updateCardStatus(id, updatedCardStatus).then(
+      (response) => {
+        console.log("Set as inactive");
+      },
+
+      (error) => {
+        const _errorMessage =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+        // setErrorContent(_errorMessage);
+        console.log(_errorMessage);
+        if (error.response && error.response.status === 401) {
+          EventBus.dispatch("logout");
+        }
+      }
+    );
+  }
 
   return (
     <div className="row gy-4 justify-content-center py-5">
@@ -36,6 +66,7 @@ const Card = (props) => {
                 <span>
                   <i
                     className="bi bi-eye-slash fs-1 float-start link-dark"
+                    onClick={hideCard}
                     title="Don't show again"
                   ></i>
 

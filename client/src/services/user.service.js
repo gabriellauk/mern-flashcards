@@ -53,6 +53,19 @@ const updateCard = (idStringified, reqBody) => {
   });
 };
 
+const updateCardStatus = (idStringified, reqBody) => {
+  const myAuthHeader = authHeader();
+
+  const headers = {
+    ...myAuthHeader,
+    "Content-Type": "application/json",
+  };
+
+  return axios.post(API_URL + "cards/updatecardstatus/" + idStringified, reqBody, {
+    headers,
+  });
+};
+
 const getWelcome = () => {
   return axios.get(API_URL + "welcome", { headers: authHeader() });
 };
@@ -66,5 +79,6 @@ export default {
   deleteCard,
   getSpecificCard,
   updateCard,
+  updateCardStatus,
   getWelcome
 };
