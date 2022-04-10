@@ -4,16 +4,27 @@ import UserService from "../../services/user.service";
 import EventBus from "../common/EventBus";
 
 import Card from "./Card";
+import SessionOver from "./SessionOver";
+import NoCards from "./NoCards";
 
 const CardSession = (props) => {
   const [errorContent, setErrorContent] = useState("");
   const [activeCards, setActiveCards] = useState([]);
   const [displayedCard, setDisplayedCard] = useState(null);
   const [cardFront, setCardFront] = useState(true);
+  const [noCards, setNoCards] = useState(false);
+  const [sessionOver, setSessionOver] = useState(false);
 
   const loadActiveCards = () => {
     UserService.getActiveCards().then(
       (response) => {
+        const myCards = response.data;
+
+        if (myCards.length === 0) {
+          setNoCards(true);
+          return;
+        }
+
         const randomOrder = randomiseActiveCards(response.data);
         configureNextCard(randomOrder);
       },
@@ -57,7 +68,7 @@ const CardSession = (props) => {
 
   const configureNextCard = (cards) => {
     if (cards.length === 0) {
-      console.log("ran out");
+      setSessionOver(true);
       return;
     }
 
@@ -68,6 +79,17 @@ const CardSession = (props) => {
     setDisplayedCard(card);
   };
 
+  const newSession = () => {
+    setSessionOver(false);
+    loadActiveCards();
+  };
+
+  if (noCards) {
+    return <NoCards />;
+  }
+  if (sessionOver) {
+    return <SessionOver newSession={newSession} />;
+  }
   if (displayedCard !== null) {
     return (
       <Card
@@ -78,6 +100,7 @@ const CardSession = (props) => {
       ></Card>
     );
   }
+
   return <div></div>;
 };
 
