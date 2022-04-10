@@ -27,7 +27,7 @@ const Welcome = () => {
 
   return (
     <React.Fragment>
-      <section className="container py-5">
+      <section className="container py-5 h-100">
         <h2 className="display-5 text-white py-2">
           Welcome to Flashcards, an online learning tool to help you memorise
           new concepts.
