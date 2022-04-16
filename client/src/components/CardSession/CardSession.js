@@ -97,6 +97,7 @@ const CardSession = (props) => {
         configureNextCard={configureNextCard}
         activeCards={activeCards}
         cardFront={cardFront}
+        setCardFront={setCardFront}
       ></Card>
     );
   }
