@@ -57,39 +57,54 @@ const Login = (props) => {
     }
   };
   return (
-    <div className="col-md-12">
-      <div className="card card-container">
-        <img
-          src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-          alt="profile-img"
-          className="profile-img-card"
-        />
+
+    <React.Fragment>
+
+      <div className="row">
+
+      <div class="col-lg-6 col-md-12 ">
+
+
+      <section className="row gy-4 mt-0">
+      <h2 className="display-5 text-white py-2">
+        Welcome to Flashcards, an online learning tool to help you memorise
+        new concepts.
+      </h2>
+
+    
+
+ 
+      
+        
         <Form onSubmit={handleLogin} ref={form}>
           <div className="form-group">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="username"></label>
             <Input
               type="text"
-              className="form-control"
+              className="form-control-lg w-50"
               name="username"
+              placeholder="Username"
               value={username}
               onChange={onChangeUsername}
               validations={[required]}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password"></label>
             <Input
               type="password"
-              className="form-control"
+              className="form-control-lg w-50"
               name="password"
+              placeholder="Password"
               value={password}
               onChange={onChangePassword}
               validations={[required]}
             />
           </div>
-          <div className="form-group">
+          <div className="form-group py-4">
             <button
-              className="btn btn-outline-primary btn-lg"
+              // className="btn btn-outline-primary btn-lg"
+              className="btn btn-dark px-3 fs-3"
               disabled={loading}
             >
               {loading && (
@@ -107,12 +122,30 @@ const Login = (props) => {
           )}
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
         </Form>
-        Not registered yet?{" "}
-        <Link to={"/register"} className="nav-link">
+       
+        <span className="text-white">Not registered yet? </span>
+        <Link to={"/register"} className="link-light">
           Sign up here
         </Link>
+      
+   
+    </section>
+
+
+        </div>
+
+        <div class="col-sm">
+<i class="bi bi-lightning-fill fa-10x lightning-large"></i>
+        </div>
+
+
+
       </div>
-    </div>
+    
+  </React.Fragment>
+
+
+    
   );
 };
 export default Login;
