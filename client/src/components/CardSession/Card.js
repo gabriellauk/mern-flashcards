@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React from "react";
 
 import UserService from "../../services/user.service";
 import EventBus from "../common/EventBus";
@@ -6,16 +6,16 @@ import EventBus from "../common/EventBus";
 import CardFront from "./CardFront";
 import CardBack from "./CardBack";
 
-const Card = (props) => {
-  const [nextPressed, setNextPressed] = useState(false);
+import { CSSTransition, SwitchTransition } from "react-transition-group";
 
+const Card = (props) => {
   const flipCard = () => {
     props.setCardFront(false);
   };
 
   const nextCard = () => {
     props.setCardFront(true);
-    setNextPressed(true);
+
     props.configureNextCard(props.activeCards);
   };
 
@@ -49,15 +49,22 @@ const Card = (props) => {
 
   return (
     <React.Fragment>
-      {props.cardFront ? (
-        <CardFront displayedCard={props.displayedCard} flipCard={flipCard} />
-      ) : (
-        <CardBack
-          displayedCard={props.displayedCard}
-          hideCard={hideCard}
-          nextCard={nextCard}
-        />
-      )}
+      <SwitchTransition>
+        <CSSTransition timeout={300} key={props.cardFront} classNames="fade">
+          {props.cardFront ? (
+            <CardFront
+              displayedCard={props.displayedCard}
+              flipCard={flipCard}
+            />
+          ) : (
+            <CardBack
+              displayedCard={props.displayedCard}
+              hideCard={hideCard}
+              nextCard={nextCard}
+            />
+          )}
+        </CSSTransition>
+      </SwitchTransition>
     </React.Fragment>
   );
 };
