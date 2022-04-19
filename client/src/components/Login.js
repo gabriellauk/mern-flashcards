@@ -125,8 +125,8 @@ const Login = (props) => {
           </section>
         </div>
 
-        <div class="col-sm">
-          <i class="bi bi-lightning-fill fa-10x lightning-large"></i>
+        <div className="col-sm">
+          <i className="bi bi-lightning-fill fa-10x lightning-large"></i>
         </div>
       </div>
     </React.Fragment>
