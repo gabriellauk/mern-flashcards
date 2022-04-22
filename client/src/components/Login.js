@@ -62,7 +62,7 @@ const Login = (props) => {
   return (
     <React.Fragment>
       <div className="row">
-        <div class="col-lg-6 col-md-12 ">
+        <div className="col-lg-6 col-md-12 ">
           <section className="row gy-4 mt-0">
             <h2 className="display-5 text-white py-2">
               Welcome to Flashcards, an online learning tool to help you
