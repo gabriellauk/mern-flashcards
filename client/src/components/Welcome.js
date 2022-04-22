@@ -2,16 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import UserService from "../services/user.service";
 
-import AuthService from "../services/auth.service";
-
-const currentUser = AuthService.getCurrentUser();
-
 const Welcome = (props) => {
   const [content, setContent] = useState("");
+
   useEffect(() => {
     UserService.getWelcome().then(
       (response) => {
         setContent(response.data);
+        console.log(response.data);
       },
       (error) => {
         const _content =
@@ -33,7 +31,7 @@ const Welcome = (props) => {
     <React.Fragment>
       <section className="container py-5 h-100">
         <h2 className="display-5 text-white py-2">
-          Hi there <span className="fw-bold">{currentUser.username}</span>, what would you like to do right now?
+          Hi there, what would you like to do right now?
         </h2>
 
         <div className="row gy-2">
