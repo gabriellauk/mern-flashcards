@@ -22,10 +22,10 @@ const Welcome = (props) => {
   }, []);
 
   let navigate = useNavigate();
-  
+
   const goTo = (page) => {
-    navigate(page)
-  }
+    navigate(page);
+  };
 
   return (
     <React.Fragment>
@@ -36,13 +36,21 @@ const Welcome = (props) => {
 
         <div className="row gy-2">
           <div className="col-md-auto">
-            <button type="button" className="btn btn-dark px-3 fs-3 button-100" onClick={() => goTo("../../card-session")}>
+            <button
+              type="button"
+              className="btn btn-dark px-3 fs-3 button-100"
+              onClick={() => goTo("../../card-session")}
+            >
               <i className="bi bi-play-circle-fill" title="Start session"></i>
               <span> Start session</span>
             </button>
           </div>
           <div className="col-md-auto">
-            <button type="button" className="btn btn-dark px-3 fs-3 button-100" onClick={() => goTo("../../manage-active-cards")}>
+            <button
+              type="button"
+              className="btn btn-dark px-3 fs-3 button-100"
+              onClick={() => goTo("../../manage-active-cards")}
+            >
               <i className="bi bi-pencil-square" title="Manage cards"></i>
               <span> Manage cards</span>
             </button>

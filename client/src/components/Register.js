@@ -160,7 +160,7 @@ const Register = (props) => {
             </Form>
 
             <span className="text-white">Already got an account? </span>
-            <Link to={"/login"} className="link-light">
+            <Link to={"/"} className="link-light">
               Log in here
             </Link>
           </section>

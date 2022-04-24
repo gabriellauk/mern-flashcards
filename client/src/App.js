@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
-import 'bootstrap-icons/font/bootstrap-icons.css';
+import { Routes, Route, Navigate } from "react-router-dom";
+import "bootstrap-icons/font/bootstrap-icons.css";
 import "./css/main.min.css";
 import "./App.css";
 
@@ -47,18 +47,25 @@ const App = () => {
     setCurrentUser(undefined);
   };
 
+  console.log(currentUser);
+
   return (
     <div className="d-flex flex-column vh-100">
-      
       <NavBar logOutHandler={logOutHandler} currentUser={currentUser} />
       <div className="container-md container-fluid flex-fill">
         <Routes>
-          <Route exact path={"/"} element={<Home />} />
           <Route
             exact
-            path="/login"
-            element={<Login onLoggedIn={updateUserState} />}
+            path={"/"}
+            element={
+              currentUser !== null ? (
+                <Navigate replace to="/welcome" />
+              ) : (
+                <Login onLoggedIn={updateUserState} />
+              )
+            }
           />
+
           <Route exact path="/register" element={<Register />} />
 
           <Route
@@ -100,7 +107,11 @@ const App = () => {
             path="/manage-inactive-cards"
             element={<PrivateRoute currentUser={currentUser} />}
           >
-            <Route exact path="/manage-inactive-cards" element={<InactiveCardsList />} />
+            <Route
+              exact
+              path="/manage-inactive-cards"
+              element={<InactiveCardsList />}
+            />
           </Route>
 
           <Route
@@ -126,9 +137,7 @@ const App = () => {
           >
             <Route exact path="/card-session" element={<CardSession />} />
           </Route>
-
         </Routes>
-        
       </div>
     </div>
   );

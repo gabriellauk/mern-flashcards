@@ -6,7 +6,7 @@ const Nav = (props) => {
     <div>
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <div className="container-xxl">
-          <Link to={"#"} className="navbar-brand">
+          <Link to={"/"} className="navbar-brand">
             <i className="bi bi-lightning fs-2"> </i>
             <span className="fw-medium fs-2">Flashcards</span>
           </Link>
@@ -26,7 +26,7 @@ const Nav = (props) => {
 
                 <li className="nav-item" title="Log out">
                   <a
-                    href="/login"
+                    href="/"
                     className="nav-link"
                     onClick={props.logOutHandler}
                   >
