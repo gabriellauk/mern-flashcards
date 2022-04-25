@@ -166,7 +166,7 @@ const Register = (props) => {
           </section>
         </div>
 
-        <div className="col-sm">
+        <div className="col-sm d-none d-lg-block">
           <i className="bi bi-lightning-fill fa-10x lightning-large"></i>
         </div>
       </div>
