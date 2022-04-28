@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 
 import UserService from "../../services/user.service";
 import EventBus from "../common/EventBus";
 import ActiveCardsList from "./ActiveCardsList";
 import Error from "./Error";
+import NoActiveCards from "./NoActiveCards";
 
 const UserCards = (props) => {
   const [errorContent, setErrorContent] = useState("");
   const [activeCards, setActiveCards] = useState([]);
+
+  const hasActiveCards = useMemo(() => activeCards.length > 0, [activeCards]);
 
   const getActiveCards = () => {
     UserService.getActiveCards().then(
@@ -33,16 +36,23 @@ const UserCards = (props) => {
 
   useEffect(getActiveCards, []);
 
-  return (
-    <div>
-      
-      {!errorContent ? (
-        <ActiveCardsList activeCards={activeCards} onDelete={getActiveCards} currentUser={props.currentUser} />
-      ) : (
-        <Error errorContent={errorContent} />
-      )}
-    </div>
-  );
+  if (!hasActiveCards) {
+    return <NoActiveCards />;
+  } else {
+    return (
+      <div>
+        {!errorContent ? (
+          <ActiveCardsList
+            activeCards={activeCards}
+            onDelete={getActiveCards}
+            currentUser={props.currentUser}
+          />
+        ) : (
+          <Error errorContent={errorContent} />
+        )}
+      </div>
+    );
+  }
 };
 
 export default UserCards;
