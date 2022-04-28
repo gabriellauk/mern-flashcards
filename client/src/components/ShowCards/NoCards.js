@@ -32,7 +32,7 @@ const NoCards = () => {
               className="btn btn-dark px-3 fs-3 button-100"
               onClick={() => goTo("../../manage-inactive-cards")}
             >
-              <i className="bi bi-pencil-square" title="Manage cards"></i>
+              <i className="bi bi-pencil-square" title="Manage inactive cards"></i>
               <span> Manage inactive cards</span>
             </button>
           </div>
