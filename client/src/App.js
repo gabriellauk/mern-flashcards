@@ -7,9 +7,6 @@ import "./App.css";
 import AuthService from "./services/auth.service";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import Home from "./components/Home";
-import Profile from "./components/Profile";
-import BoardUser from "./components/BoardUser";
 
 import EventBus from "./components/common/EventBus";
 import PrivateRoute from "./components/common/PrivateRoute";
@@ -17,7 +14,6 @@ import PrivateRoute from "./components/common/PrivateRoute";
 import UserCards from "./components/ShowCards/UserCards";
 import InactiveCardsList from "./components/ShowCards/InactiveCardsList";
 import AddCard from "./components/Forms/AddCard";
-import SpecificCard from "./components/ShowCards/SpecificCard";
 import UpdateCard from "./components/Forms/UpdateCard";
 import NavBar from "./components/Layout/NavBar";
 import Welcome from "./components/Welcome";
@@ -70,14 +66,6 @@ const App = () => {
 
           <Route
             exact
-            path="/profile"
-            element={<PrivateRoute currentUser={currentUser} />}
-          >
-            <Route exact path="/profile" element={<Profile />} />
-          </Route>
-
-          <Route
-            exact
             path="/welcome"
             element={<PrivateRoute currentUser={currentUser} />}
           >
@@ -91,8 +79,6 @@ const App = () => {
           >
             <Route exact path="/add-card" element={<AddCard />} />
           </Route>
-
-          <Route path="/user" element={<BoardUser />} />
 
           <Route
             exact
@@ -112,14 +98,6 @@ const App = () => {
               path="/manage-inactive-cards"
               element={<InactiveCardsList />}
             />
-          </Route>
-
-          <Route
-            exact
-            path="/card/:id"
-            element={<PrivateRoute currentUser={currentUser} />}
-          >
-            <Route exact path="/card/:id" element={<SpecificCard />} />
           </Route>
 
           <Route
