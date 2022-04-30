@@ -3,12 +3,6 @@ import authHeader from "./auth-header";
 
 const API_URL = "http://localhost:5000/api/test/";
 
-const getPublicContent = () => {
-  return axios.get(API_URL + "all");
-};
-const getUserBoard = () => {
-  return axios.get(API_URL + "user", { headers: authHeader() });
-};
 const getActiveCards = () => {
   return axios.get(API_URL + "activeCards", { headers: authHeader() });
 };
@@ -61,9 +55,13 @@ const updateCardStatus = (idStringified, reqBody) => {
     "Content-Type": "application/json",
   };
 
-  return axios.post(API_URL + "cards/updatecardstatus/" + idStringified, reqBody, {
-    headers,
-  });
+  return axios.post(
+    API_URL + "cards/updatecardstatus/" + idStringified,
+    reqBody,
+    {
+      headers,
+    }
+  );
 };
 
 const getWelcome = () => {
@@ -71,8 +69,6 @@ const getWelcome = () => {
 };
 
 export default {
-  getPublicContent,
-  getUserBoard,
   getActiveCards,
   getInactiveCards,
   addCard,
@@ -80,5 +76,5 @@ export default {
   getSpecificCard,
   updateCard,
   updateCardStatus,
-  getWelcome
+  getWelcome,
 };
