@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import UserService from "../../services/user.service";
 import EventBus from "../common/EventBus";
 
-import InactiveCardItem from "./InactiveCardItem";
+import CardItem from "./CardItem";
 
 const InactiveCardsList = (props) => {
   const [errorContent, setErrorContent] = useState("");
@@ -62,7 +62,7 @@ const InactiveCardsList = (props) => {
   function cardList() {
     return inactiveCards.map((card) => {
       return (
-        <InactiveCardItem
+        <CardItem
           card={card}
           deleteCard={() => deleteCard(card["_id"])}
           key={card["_id"]}

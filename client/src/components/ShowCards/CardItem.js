@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const ActiveCardItem = (props) => (
+const CardItem = (props) => (
   <React.Fragment>
     <div className="col-lg-4 col-md-6">
       <div className="card rounded custom-card-listings-height p-4">
@@ -16,4 +16,4 @@ const ActiveCardItem = (props) => (
   </React.Fragment>
 );
 
-export default ActiveCardItem;
+export default CardItem;

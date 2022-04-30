@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import ActiveCardItem from "./ActiveCardItem";
+import CardItem from "./CardItem";
 import { useState } from "react";
 
 import UserService from "../../services/user.service";
@@ -35,7 +35,7 @@ const ActiveCardsList = (props) => {
   function cardList() {
     return props.activeCards.map((card) => {
       return (
-        <ActiveCardItem
+        <CardItem
           card={card}
           deleteCard={() => deleteCard(card["_id"])}
           key={card["_id"]}
