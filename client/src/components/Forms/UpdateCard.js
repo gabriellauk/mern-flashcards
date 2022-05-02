@@ -149,17 +149,17 @@ const UpdateCard = (props) => {
 
             <div className="container">
               <div className="row">
-                <div className="col">
-                  <div className="d-inline-block fs-5 mt-0 me-2">Inactive</div>
-                  <div className="form-check form-switch d-inline-block fs-5">
+                <div className="col text-light fs-5">
+                  <span className="me-2">Inactive</span>
+                  <div className="form-check form-switch d-inline-block">
                     <input
                       type="checkbox"
-                      className="form-check-input fs-5"
+                      className="form-check-input"
                       id="active"
                       checked={form.active}
                       onChange={(e) => updateForm({ active: e.target.checked })}
                     />
-                    <label htmlFor="active" className="mt-0 ms-2">Active</label>
+                    <span className="ms-2">Active</span>
                   </div>
                 </div>
               </div>
