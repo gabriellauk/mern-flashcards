@@ -5,7 +5,7 @@ import EventBus from "../common/EventBus";
 
 import Card from "./Card";
 import SessionOver from "./SessionOver";
-import NoCards from "./NoCards";
+import NoCards from "../common/NoCards";
 
 const CardSession = (props) => {
   const [errorContent, setErrorContent] = useState("");

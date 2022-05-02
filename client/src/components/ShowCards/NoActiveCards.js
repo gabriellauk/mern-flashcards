@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import NoCards from "./NoCards";
+import NoCards from "../common/NoCards";
 
 const NoActiveCards = (props) => {
   const navigate = useNavigate();
