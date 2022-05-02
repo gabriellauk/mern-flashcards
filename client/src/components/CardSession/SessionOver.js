@@ -1,5 +1,7 @@
 import React from "react";
 
+import ButtonIcon from "../Layout/ButtonIcon";
+
 const SessionOver = (props) => {
   return (
     <React.Fragment>
@@ -10,14 +12,11 @@ const SessionOver = (props) => {
 
         <div className="row gy-2">
           <div className="col-md-auto">
-            <button
-              type="button"
-              className="btn btn-dark px-3 fs-3 button-100"
-              onClick={props.newSession}
-            >
-              <i className="bi bi-play-circle-fill" title="Start session"></i>
-              <span> Start another session</span>
-            </button>
+            <ButtonIcon
+              action={props.newSession}
+              content="Start another session"
+              icon="bi-play-circle-fill"
+            />
           </div>
         </div>
       </section>

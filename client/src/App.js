@@ -43,8 +43,6 @@ const App = () => {
     setCurrentUser(undefined);
   };
 
-  console.log(currentUser);
-
   return (
     <div className="d-flex flex-column vh-100">
       <NavBar logOutHandler={logOutHandler} currentUser={currentUser} />

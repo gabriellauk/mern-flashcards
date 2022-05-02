@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+import ButtonIcon from "../Layout/ButtonIcon";
+
 const NoCards = () => {
   let navigate = useNavigate();
 
@@ -17,24 +19,18 @@ const NoCards = () => {
 
         <div className="row gy-2">
           <div className="col-md-auto">
-            <button
-              type="button"
-              className="btn btn-dark px-3 fs-3 button-100"
-              onClick={() => goTo("../../add-card")}
-            >
-              <i className="bi bi-plus-circle-fill" title="Add card"></i>
-              <span> Add card</span>
-            </button>
+            <ButtonIcon
+              action={() => goTo("../../add-card")}
+              content="Add card"
+              icon="bi-plus-circle-fill"
+            />
           </div>
           <div className="col-md-auto">
-            <button
-              type="button"
-              className="btn btn-dark px-3 fs-3 button-100"
-              onClick={() => goTo("../../manage-inactive-cards")}
-            >
-              <i className="bi bi-pencil-square" title="Manage inactive cards"></i>
-              <span> Manage inactive cards</span>
-            </button>
+            <ButtonIcon
+              action={() => goTo("../../manage-inactive-cards")}
+              content="Manage inactive cards"
+              icon="bi-pencil-square"
+            />
           </div>
         </div>
       </section>

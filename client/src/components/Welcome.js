@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import UserService from "../services/user.service";
 
+import ButtonIcon from "./Layout/ButtonIcon";
+
 const Welcome = (props) => {
   const [content, setContent] = useState("");
 
@@ -36,24 +38,18 @@ const Welcome = (props) => {
 
         <div className="row gy-2">
           <div className="col-md-auto">
-            <button
-              type="button"
-              className="btn btn-dark px-3 fs-3 button-100"
-              onClick={() => goTo("../../card-session")}
-            >
-              <i className="bi bi-play-circle-fill" title="Start session"></i>
-              <span> Start session</span>
-            </button>
+            <ButtonIcon
+              action={() => goTo("../../card-session")}
+              content="Start session"
+              icon="bi-play-circle-fill"
+            />
           </div>
           <div className="col-md-auto">
-            <button
-              type="button"
-              className="btn btn-dark px-3 fs-3 button-100"
-              onClick={() => goTo("../../manage-active-cards")}
-            >
-              <i className="bi bi-pencil-square" title="Manage cards"></i>
-              <span> Manage cards</span>
-            </button>
+            <ButtonIcon
+              action={() => goTo("../../manage-active-cards")}
+              content="Manage cards"
+              icon="bi-pencil-square"
+            />
           </div>
         </div>
       </section>
