@@ -17,8 +17,6 @@ const required = (value) => {
 };
 
 const Login = (props) => {
-  let navigate = useNavigate();
-
   const form = useRef();
   const checkBtn = useRef();
   const [username, setUsername] = useState("");
@@ -33,31 +31,20 @@ const Login = (props) => {
     const password = e.target.value;
     setPassword(password);
   };
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setMessage("");
     setLoading(true);
     form.current.validateAll();
     if (checkBtn.current.context._errors.length === 0) {
-      AuthService.login(username, password).then(
-        () => {
-          props.onLoggedIn();
-          navigate("/welcome");
-        },
-        (error) => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-          setLoading(false);
-          setMessage(resMessage);
-        }
-      );
-    } else {
-      setLoading(false);
+      try {
+        await AuthService.login(username, password);
+        props.onLoggedIn();
+      } catch {
+        setMessage("Username and/or password is not valid");
+      }
     }
+    setLoading(false);
   };
   return (
     <React.Fragment>

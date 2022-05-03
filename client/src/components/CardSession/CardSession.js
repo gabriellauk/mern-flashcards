@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 import UserService from "../../services/user.service";
-import EventBus from "../common/EventBus";
 
 import Card from "./Card";
 import SessionOver from "./SessionOver";
@@ -15,37 +14,26 @@ const CardSession = (props) => {
   const [noCards, setNoCards] = useState(false);
   const [sessionOver, setSessionOver] = useState(false);
 
-  const loadActiveCards = () => {
-    UserService.getActiveCards().then(
-      (response) => {
-        const myCards = response.data;
+  const loadActiveCards = async () => {
+    try {
+      const myCards = await UserService.getActiveCards();
 
-        if (myCards.length === 0) {
-          setNoCards(true);
-          return;
-        }
-
-        const randomOrder = randomiseActiveCards(response.data);
-        configureNextCard(randomOrder);
-      },
-
-      (error) => {
-        const _errorMessage =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-        setErrorContent(_errorMessage);
-        console.log(_errorMessage);
-        if (error.response && error.response.status === 401) {
-          EventBus.dispatch("logout");
-        }
+      if (myCards.length === 0) {
+        setNoCards(true);
+        return;
       }
-    );
+
+      const randomOrder = randomiseActiveCards(myCards);
+      configureNextCard(randomOrder);
+    } catch (error) {
+      const errorMessage = error.message || error.toString();
+      setErrorContent(errorMessage);
+    }
   };
 
-  useEffect(loadActiveCards, []);
+  useEffect(() => {
+    loadActiveCards();
+  }, []);
 
   const randomiseActiveCards = (cards) => {
     let currentIndex = cards.length,

@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useMemo } from "react";
 
 import UserService from "../../services/user.service";
-import EventBus from "../common/EventBus";
 import ActiveCardsList from "./ActiveCardsList";
 import Error from "./Error";
 import NoActiveCards from "./NoActiveCards";
@@ -12,29 +11,19 @@ const UserCards = (props) => {
 
   const hasActiveCards = useMemo(() => activeCards.length > 0, [activeCards]);
 
-  const getActiveCards = () => {
-    UserService.getActiveCards().then(
-      (response) => {
-        setActiveCards(response.data);
-      },
-
-      (error) => {
-        const _errorMessage =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-        setErrorContent(_errorMessage);
-        console.log(_errorMessage);
-        if (error.response && error.response.status === 401) {
-          EventBus.dispatch("logout");
-        }
-      }
-    );
+  const loadActiveCards = async () => {
+    try {
+      const cards = await UserService.getActiveCards();
+      setActiveCards(cards);
+    } catch (error) {
+      const errorMessage = error.message || error.toString();
+      setErrorContent(errorMessage);
+    }
   };
 
-  useEffect(getActiveCards, []);
+  useEffect(() => {
+    loadActiveCards();
+  }, []);
 
   if (!hasActiveCards) {
     return <NoActiveCards />;
@@ -44,7 +33,7 @@ const UserCards = (props) => {
         {!errorContent ? (
           <ActiveCardsList
             activeCards={activeCards}
-            onDelete={getActiveCards}
+            onDelete={loadActiveCards}
             currentUser={props.currentUser}
           />
         ) : (

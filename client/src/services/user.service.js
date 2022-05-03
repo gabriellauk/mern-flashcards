@@ -1,10 +1,16 @@
 import axios from "axios";
 import authHeader from "./auth-header";
+import handleError from "./error-handler";
 
 const API_URL = "http://localhost:5000/api/test/";
 
-const getActiveCards = () => {
-  return axios.get(API_URL + "activeCards", { headers: authHeader() });
+const getActiveCards = async () => {
+  try {
+    return (await axios.get(API_URL + "activeCards", { headers: authHeader() })).data;
+  } catch (error) {
+    handleError(error);
+    throw error;
+  }
 };
 
 const getInactiveCards = () => {
