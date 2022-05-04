@@ -67,30 +67,23 @@ const Register = (props) => {
     const password = e.target.value;
     setPassword(password);
   };
-  const handleRegister = (e) => {
+
+  const handleRegister = async (e) => {
     e.preventDefault();
     setMessage("");
-    setSuccessful(false);
     form.current.validateAll();
     if (checkBtn.current.context._errors.length === 0) {
-      AuthService.register(username, email, password).then(
-        (response) => {
-          setMessage(response.data.message);
-          setSuccessful(true);
-        },
-        (error) => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-          setMessage(resMessage);
-          setSuccessful(false);
-        }
-      );
+      try {
+        const result = await AuthService.register(username, email, password);
+        setMessage(result.message);
+        setSuccessful(true);
+      } catch (error) {
+        const errorMessage = error.message || error.toString();
+        setMessage(errorMessage);
+      }
     }
   };
+
   return (
     <React.Fragment>
       <div className="row">
