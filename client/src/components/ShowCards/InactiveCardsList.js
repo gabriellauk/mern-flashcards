@@ -13,29 +13,19 @@ const InactiveCardsList = (props) => {
   const [errorContent, setErrorContent] = useState("");
   const [inactiveCards, setInactiveCards] = useState([]);
 
-  const getInactiveCards = () => {
-    UserService.getInactiveCards().then(
-      (response) => {
-        setInactiveCards(response.data);
-      },
-
-      (error) => {
-        const _errorMessage =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-        setErrorContent(_errorMessage);
-        console.log(_errorMessage);
-        if (error.response && error.response.status === 401) {
-          EventBus.dispatch("logout");
-        }
-      }
-    );
+  const loadInactiveCards = async () => {
+    try {
+      const cards = await UserService.getInactiveCards();
+      setInactiveCards(cards);
+    } catch (error) {
+      const errorMessage = error.message || error.toString();
+      setErrorContent(errorMessage);
+    }
   };
 
-  useEffect(getInactiveCards, []);
+  useEffect(() => {
+    loadInactiveCards();
+  }, []);
 
   async function deleteCard(id) {
     UserService.deleteCard(id).then(

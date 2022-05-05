@@ -13,8 +13,13 @@ const getActiveCards = async () => {
   }
 };
 
-const getInactiveCards = () => {
-  return axios.get(API_URL + "inactiveCards", { headers: authHeader() });
+const getInactiveCards = async () => {
+  try {
+    return (await axios.get(API_URL + "inactiveCards", { headers: authHeader() })).data;
+  } catch (error) {
+    handleError(error);
+    throw error;
+  }
 };
 
 const addCard = (reqBody) => {
