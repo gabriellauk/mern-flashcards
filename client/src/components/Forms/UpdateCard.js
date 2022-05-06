@@ -51,10 +51,11 @@ const UpdateCard = (props) => {
 
     try {
       await UserService.updateCard(id, updatedCard);
-      navigate("/manage-active-cards");
     } catch (error) {
       console.log(error.message);
     }
+
+    navigate("/manage-active-cards");
   };
 
   return (
