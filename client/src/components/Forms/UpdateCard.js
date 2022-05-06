@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
 
 import UserService from "../../services/user.service";
-import EventBus from "../common/EventBus";
 
 const UpdateCard = (props) => {
   const [form, setForm] = useState({
@@ -43,33 +42,20 @@ const UpdateCard = (props) => {
   };
 
   // Update Card in the database
-  async function onSubmit(e) {
+  const onSubmit = async (e) => {
     e.preventDefault();
 
     const id = params.id;
 
     const updatedCard = { ...form };
 
-    UserService.updateCard(id, updatedCard).then(
-      (response) => {
-        navigate("/manage-active-cards");
-      },
-
-      (error) => {
-        const _errorMessage =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-        // setErrorContent(_errorMessage);
-        console.log(_errorMessage);
-        if (error.response && error.response.status === 401) {
-          EventBus.dispatch("logout");
-        }
-      }
-    );
-  }
+    try {
+      await UserService.updateCard(id, updatedCard);
+      navigate("/manage-active-cards");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return (
     <React.Fragment>

@@ -66,17 +66,21 @@ const getSpecificCard = async (idStringified) => {
   }
 };
 
-const updateCard = (idStringified, reqBody) => {
+const updateCard = async (idStringified, reqBody) => {
   const myAuthHeader = authHeader();
 
   const headers = {
     ...myAuthHeader,
     "Content-Type": "application/json",
   };
-
-  return axios.post(API_URL + "cards/update/" + idStringified, reqBody, {
-    headers,
-  });
+  try {
+    return axios.post(API_URL + "cards/update/" + idStringified, reqBody, {
+      headers,
+    }).data;
+  } catch (error) {
+    handleError(error);
+    throw error;
+  }
 };
 
 const updateCardStatus = (idStringified, reqBody) => {
