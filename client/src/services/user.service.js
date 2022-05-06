@@ -6,7 +6,8 @@ const API_URL = "http://localhost:5000/api/test/";
 
 const getActiveCards = async () => {
   try {
-    return (await axios.get(API_URL + "activeCards", { headers: authHeader() })).data;
+    return (await axios.get(API_URL + "activeCards", { headers: authHeader() }))
+      .data;
   } catch (error) {
     handleError(error);
     throw error;
@@ -15,22 +16,28 @@ const getActiveCards = async () => {
 
 const getInactiveCards = async () => {
   try {
-    return (await axios.get(API_URL + "inactiveCards", { headers: authHeader() })).data;
+    return (
+      await axios.get(API_URL + "inactiveCards", { headers: authHeader() })
+    ).data;
   } catch (error) {
     handleError(error);
     throw error;
   }
 };
 
-const addCard = (reqBody) => {
+const addCard = async (reqBody) => {
   const myAuthHeader = authHeader();
 
   const headers = {
     ...myAuthHeader,
     "Content-Type": "application/json",
   };
-
-  return axios.post(API_URL + "addCard", reqBody, { headers });
+  try {
+    return (await axios.post(API_URL + "addCard", reqBody, { headers })).data;
+  } catch (error) {
+    handleError(error);
+    throw error;
+  }
 };
 
 const deleteCard = (id) => {

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 
 import UserService from "../../services/user.service";
-import EventBus from "../common/EventBus";
 
 const AddCard = (props) => {
   const [form, setForm] = useState({
@@ -20,32 +19,19 @@ const AddCard = (props) => {
   }
 
   // Create Card in the database
-  async function onSubmit(e) {
+  const onSubmit = async (e) => {
     e.preventDefault();
 
     const newCard = { ...form };
 
-    UserService.addCard(newCard).then(
-      (response) => {
-        setForm({ frontText: "", backText: "" });
-        navigate("/");
-      },
-
-      (error) => {
-        const _errorMessage =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-        // setErrorContent(_errorMessage);
-        console.log(_errorMessage);
-        if (error.response && error.response.status === 401) {
-          EventBus.dispatch("logout");
-        }
-      }
-    );
-  }
+    try {
+      await UserService.addCard(newCard);
+      setForm({ frontText: "", backText: "" });
+      navigate("/");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return (
     <React.Fragment>
