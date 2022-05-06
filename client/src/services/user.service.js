@@ -53,11 +53,24 @@ const deleteCard = async (id) => {
   }
 };
 
-const getSpecificCard = (idStringified) => {
-  return axios.get(API_URL + "cards/" + idStringified, {
-    headers: authHeader(),
-  });
+const getSpecificCard = async (idStringified) => {
+  try {
+    return (
+      await axios.get(API_URL + "cards/" + idStringified, {
+        headers: authHeader(),
+      })
+    ).data;
+  } catch (error) {
+    handleError(error);
+    throw error;
+  }
 };
+
+// const getSpecificCard = (idStringified) => {
+//   return axios.get(API_URL + "cards/" + idStringified, {
+//     headers: authHeader(),
+//   });
+// };
 
 const updateCard = (idStringified, reqBody) => {
   const myAuthHeader = authHeader();

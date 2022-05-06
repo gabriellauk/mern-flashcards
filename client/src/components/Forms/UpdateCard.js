@@ -14,28 +14,15 @@ const UpdateCard = (props) => {
   const params = useParams();
   const navigate = useNavigate();
 
-  async function getCard() {
+  const getCard = async () => {
     const id = params.id;
-    UserService.getSpecificCard(id).then(
-      (response) => {
-        setForm(response.data);
-      },
-
-      (error) => {
-        const _errorMessage =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-        // setErrorContent(_errorMessage);
-        console.log(_errorMessage);
-        if (error.response && error.response.status === 401) {
-          EventBus.dispatch("logout");
-        }
-      }
-    );
-  }
+    try {
+      const result = await UserService.getSpecificCard(id);
+      setForm(result);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   useEffect(getCard, []);
 
