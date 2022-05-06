@@ -1,16 +1,10 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import NoCards from "../common/NoCards";
 
-const NoActiveCards = (props) => {
-  const navigate = useNavigate();
-
-  const goToAddCard = () => {
-    navigate("../../add-card");
-  };
-
-  return (
+const NoActiveCards = () => {
+   return (
     <React.Fragment>
       <section className="row py-4">
         <div className="col-12">

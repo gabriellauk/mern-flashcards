@@ -5,11 +5,10 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import UserService from "../../services/user.service";
-import EventBus from "../common/EventBus";
 
 import CardItem from "./CardItem";
 
-const InactiveCardsList = (props) => {
+const InactiveCardsList = () => {
   const [errorContent, setErrorContent] = useState("");
   const [inactiveCards, setInactiveCards] = useState([]);
 

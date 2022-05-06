@@ -2,12 +2,8 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import CardItem from "./CardItem";
-import { useState } from "react";
-
-import UserService from "../../services/user.service";
 
 const ActiveCardsList = (props) => {
-  const [activeCards, setActiveCards] = useState(props.activeCards);
 
   // Maps all Cards to a Card component
   function cardList() {

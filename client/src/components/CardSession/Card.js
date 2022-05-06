@@ -1,7 +1,6 @@
 import React from "react";
 
 import UserService from "../../services/user.service";
-import EventBus from "../common/EventBus";
 
 import CardFront from "./CardFront";
 import CardBack from "./CardBack";

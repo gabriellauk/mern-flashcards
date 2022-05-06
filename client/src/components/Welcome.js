@@ -4,7 +4,7 @@ import UserService from "../services/user.service";
 
 import ButtonIcon from "./Layout/ButtonIcon";
 
-const Welcome = (props) => {
+const Welcome = () => {
   const [content, setContent] = useState("");
 
   useEffect(() => {
