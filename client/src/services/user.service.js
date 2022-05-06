@@ -40,10 +40,17 @@ const addCard = async (reqBody) => {
   }
 };
 
-const deleteCard = (id) => {
-  return axios.delete(API_URL + "deleteCard/" + id, {
-    headers: authHeader(),
-  });
+const deleteCard = async (id) => {
+  try {
+    return (
+      await axios.delete(API_URL + "deleteCard/" + id, {
+        headers: authHeader(),
+      })
+    ).data;
+  } catch (error) {
+    handleError(error);
+    throw error;
+  }
 };
 
 const getSpecificCard = (idStringified) => {

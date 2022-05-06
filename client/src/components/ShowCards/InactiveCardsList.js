@@ -27,37 +27,10 @@ const InactiveCardsList = (props) => {
     loadInactiveCards();
   }, []);
 
-  async function deleteCard(id) {
-    UserService.deleteCard(id).then(
-      (response) => {
-        props.onDelete();
-      },
-      (error) => {
-        const _errorMessage =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-        // setErrorContent(_errorMessage);
-        console.log(_errorMessage);
-        if (error.response && error.response.status === 401) {
-          EventBus.dispatch("logout");
-        }
-      }
-    );
-  }
-
   // Maps all Cards to a Card component
   function cardList() {
     return inactiveCards.map((card) => {
-      return (
-        <CardItem
-          card={card}
-          deleteCard={() => deleteCard(card["_id"])}
-          key={card["_id"]}
-        />
-      );
+      return <CardItem card={card} key={card["_id"]} />;
     });
   }
 

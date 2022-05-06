@@ -5,50 +5,22 @@ import CardItem from "./CardItem";
 import { useState } from "react";
 
 import UserService from "../../services/user.service";
-import EventBus from "../common/EventBus";
 
 const ActiveCardsList = (props) => {
   const [activeCards, setActiveCards] = useState(props.activeCards);
 
-  async function deleteCard(id) {
-    UserService.deleteCard(id).then(
-      (response) => {
-        props.onDelete();
-      },
-      (error) => {
-        const _errorMessage =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-        // setErrorContent(_errorMessage);
-        console.log(_errorMessage);
-        if (error.response && error.response.status === 401) {
-          EventBus.dispatch("logout");
-        }
-      }
-    );
-  }
-
   // Maps all Cards to a Card component
   function cardList() {
     return props.activeCards.map((card) => {
-      return (
-        <CardItem
-          card={card}
-          deleteCard={() => deleteCard(card["_id"])}
-          key={card["_id"]}
-        />
-      );
+      return <CardItem card={card} key={card["_id"]} />;
     });
   }
 
-   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const goToAddCard = () => {
-    navigate("../../add-card")
-  }
+    navigate("../../add-card");
+  };
 
   return (
     <React.Fragment>
@@ -80,10 +52,16 @@ const ActiveCardsList = (props) => {
         </div>
         <div className="row gy-4 m-1">
           <div className="col-lg-4 col-md-6">
-            <div className="card rounded custom-card-listings-height p-4" onClick={goToAddCard}>
+            <div
+              className="card rounded custom-card-listings-height p-4"
+              onClick={goToAddCard}
+            >
               <div className="card-body d-flex justify-content-center pb-1 px-0 pt-0 fs-1">
                 <div className="align-self-center">
-                  <i className="bi bi-plus-circle-fill align-middle" title="Add new card"></i>
+                  <i
+                    className="bi bi-plus-circle-fill align-middle"
+                    title="Add new card"
+                  ></i>
                   <span className="align-middle"> NEW CARD</span>
                 </div>
               </div>

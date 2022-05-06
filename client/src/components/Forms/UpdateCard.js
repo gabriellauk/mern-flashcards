@@ -46,26 +46,14 @@ const UpdateCard = (props) => {
     });
   }
 
-  async function deleteCard() {
-    UserService.deleteCard(params.id).then(
-      (response) => {
-        navigate("/manage-active-cards");
-      },
-      (error) => {
-        const _errorMessage =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-        // setErrorContent(_errorMessage);
-        console.log(_errorMessage);
-        if (error.response && error.response.status === 401) {
-          EventBus.dispatch("logout");
-        }
-      }
-    );
-  }
+  const deleteCard = async () => {
+    try {
+      await UserService.deleteCard(params.id);
+      navigate("/manage-active-cards");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   // Update Card in the database
   async function onSubmit(e) {

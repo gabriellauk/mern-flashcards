@@ -27,7 +27,7 @@ const AddCard = (props) => {
     try {
       await UserService.addCard(newCard);
       setForm({ frontText: "", backText: "" });
-      navigate("/");
+      navigate("/manage-active-cards");
     } catch (error) {
       console.log(error.message);
     }
