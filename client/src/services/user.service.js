@@ -66,12 +66,6 @@ const getSpecificCard = async (idStringified) => {
   }
 };
 
-// const getSpecificCard = (idStringified) => {
-//   return axios.get(API_URL + "cards/" + idStringified, {
-//     headers: authHeader(),
-//   });
-// };
-
 const updateCard = (idStringified, reqBody) => {
   const myAuthHeader = authHeader();
 
