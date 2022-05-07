@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router";
 
 import UserService from "../../services/user.service";
 
-const UpdateCard = (props) => {
+const UpdateCard = () => {
   const [form, setForm] = useState({
     frontText: "",
     backText: "",

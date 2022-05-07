@@ -74,9 +74,11 @@ const updateCard = async (idStringified, reqBody) => {
     "Content-Type": "application/json",
   };
   try {
-    return axios.post(API_URL + "cards/update/" + idStringified, reqBody, {
-      headers,
-    }).data;
+    return (
+      await axios.post(API_URL + "cards/update/" + idStringified, reqBody, {
+        headers,
+      })
+    ).data;
   } catch (error) {
     handleError(error);
     throw error;
@@ -91,12 +93,14 @@ const updateCardStatus = async (idStringified, reqBody) => {
     "Content-Type": "application/json",
   };
   try {
-    return axios.post(
-      API_URL + "cards/updatecardstatus/" + idStringified,
-      reqBody,
-      {
-        headers,
-      }
+    return (
+      await axios.post(
+        API_URL + "cards/updatecardstatus/" + idStringified,
+        reqBody,
+        {
+          headers,
+        }
+      )
     ).data;
   } catch (error) {
     handleError(error);
