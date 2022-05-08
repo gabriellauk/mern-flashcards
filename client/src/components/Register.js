@@ -1,80 +1,57 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
-import CheckButton from "react-validation/build/button";
-import { isEmail } from "validator";
 import AuthService from "../services/auth.service";
 
-const required = (value) => {
-  if (!value) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This field is required!
-      </div>
-    );
-  }
-};
+const Register = () => {
+  const isEmpty = (value) => value.trim() === "";
 
-const validEmail = (value) => {
-  if (!isEmail(value)) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This is not a valid email.
-      </div>
-    );
-  }
-};
-
-const vusername = (value) => {
-  if (value.length < 3 || value.length > 20) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        The username must be between 3 and 20 characters.
-      </div>
-    );
-  }
-};
-
-const vpassword = (value) => {
-  if (value.length < 6 || value.length > 40) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        The password must be between 6 and 40 characters.
-      </div>
-    );
-  }
-};
-
-const Register = (props) => {
-  const form = useRef();
-  const checkBtn = useRef();
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
-  const onChangeUsername = (e) => {
-    const username = e.target.value;
-    setUsername(username);
-  };
-  const onChangeEmail = (e) => {
-    const email = e.target.value;
-    setEmail(email);
-  };
-  const onChangePassword = (e) => {
-    const password = e.target.value;
-    setPassword(password);
-  };
+
+  const [form, setForm] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+
+  const [formInputsValidity, setFormInputsValidity] = useState({
+    vusername: true,
+    vemail: true,
+    vpassword: true,
+  });
+
+  // Update the state properties
+  function updateForm(value) {
+    return setForm((prev) => {
+      return { ...prev, ...value };
+    });
+  }
+
+  const enteredUsernameIsValid = !isEmpty(form.username);
+  const enteredEmailIsValid = !isEmpty(form.email);
+  const enteredPasswordIsValid = !isEmpty(form.password);
 
   const handleRegister = async (e) => {
     e.preventDefault();
     setMessage("");
-    form.current.validateAll();
-    if (checkBtn.current.context._errors.length === 0) {
+
+    setFormInputsValidity({
+      vusername: enteredUsernameIsValid,
+      vemail: enteredEmailIsValid,
+      vpassword: enteredPasswordIsValid,
+    });
+
+    const formIsValid =
+      enteredUsernameIsValid && enteredEmailIsValid && enteredPasswordIsValid;
+
+    if (formIsValid) {
       try {
-        const result = await AuthService.register(username, email, password);
+        const result = await AuthService.register(
+          form.username,
+          form.email,
+          form.password
+        );
         setMessage(result.message);
         setSuccessful(true);
       } catch (error) {
@@ -93,43 +70,41 @@ const Register = (props) => {
               Register today to speed up your learning.
             </h2>
 
-            <Form onSubmit={handleRegister} ref={form}>
+            <form onSubmit={handleRegister}>
               {!successful && (
                 <div>
                   <div className="form-group">
                     <label htmlFor="username"></label>
-                    <Input
+                    <input
                       type="text"
                       className="form-control-lg w-50"
                       name="username"
                       placeholder="Username"
-                      value={username}
-                      onChange={onChangeUsername}
-                      validations={[required, vusername]}
+                      value={form.username}
+                      onChange={(e) => updateForm({ username: e.target.value })}
+                      autoFocus={true}
                     />
                   </div>
                   <div className="form-group">
                     <label htmlFor="email"></label>
-                    <Input
+                    <input
                       type="text"
                       className="form-control-lg w-50"
                       name="email"
                       placeholder="Email"
-                      value={email}
-                      onChange={onChangeEmail}
-                      validations={[required, validEmail]}
+                      value={form.email}
+                      onChange={(e) => updateForm({ email: e.target.value })}
                     />
                   </div>
                   <div className="form-group">
                     <label htmlFor="password"></label>
-                    <Input
+                    <input
                       type="password"
                       className="form-control-lg w-50"
                       name="password"
                       placeholder="Password"
-                      value={password}
-                      onChange={onChangePassword}
-                      validations={[required, vpassword]}
+                      value={form.password}
+                      onChange={(e) => updateForm({ password: e.target.value })}
                     />
                   </div>
                   <div className="form-group py-4">
@@ -137,20 +112,13 @@ const Register = (props) => {
                   </div>
                 </div>
               )}
-              {message && (
-                <div className="form-group">
-                  <div
-                    className={
-                      successful ? "alert alert-success" : "alert alert-danger"
-                    }
-                    role="alert"
-                  >
-                    {message}
-                  </div>
-                </div>
-              )}
-              <CheckButton style={{ display: "none" }} ref={checkBtn} />
-            </Form>
+
+              {!formInputsValidity.vusername && <span>Username required</span>}
+
+              {!formInputsValidity.vemail && <span>Email required</span>}
+
+              {!formInputsValidity.vpassword && <span>Password required</span>}
+            </form>
 
             <span className="text-white">Already got an account? </span>
             <Link to={"/"} className="link-light">

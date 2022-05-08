@@ -67,6 +67,7 @@ const Login = (props) => {
                   value={username}
                   onChange={onChangeUsername}
                   validations={[required]}
+                  autoFocus={true}
                 />
               </div>
               <div className="form-group">
