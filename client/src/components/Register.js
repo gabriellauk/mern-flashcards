@@ -15,37 +15,49 @@ const Register = () => {
     password: "",
   });
 
-  const [formInputsValidity, setFormInputsValidity] = useState({
-    vusername: true,
-    vemail: true,
-    vpassword: true,
-  });
-
-  // Update the state properties
   function updateForm(value) {
     return setForm((prev) => {
       return { ...prev, ...value };
     });
   }
 
-  const enteredUsernameIsValid = !isEmpty(form.username);
-  const enteredEmailIsValid = !isEmpty(form.email);
-  const enteredPasswordIsValid = !isEmpty(form.password);
+  const [formErrors, setFormErrors] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+
+  const validate = () => {
+    let errors = {};
+
+    if (isEmpty(form.username)) {
+      errors.username = "Username is required";
+    }
+
+    if (isEmpty(form.email)) {
+      errors.email = "Email address is required";
+    } else if (!/\S+@\S+\.\S+/.test(form.email)) {
+      errors.email = "Email address is invalid";
+    }
+
+    if (isEmpty(form.password)) {
+      errors.password = "Password is required";
+    }
+
+    setFormErrors(errors);
+
+    if (Object.keys(errors).length === 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
   const handleRegister = async (e) => {
     e.preventDefault();
     setMessage("");
 
-    setFormInputsValidity({
-      vusername: enteredUsernameIsValid,
-      vemail: enteredEmailIsValid,
-      vpassword: enteredPasswordIsValid,
-    });
-
-    const formIsValid =
-      enteredUsernameIsValid && enteredEmailIsValid && enteredPasswordIsValid;
-
-    if (formIsValid) {
+    if (validate(form)) {
       try {
         const result = await AuthService.register(
           form.username,
@@ -84,7 +96,13 @@ const Register = () => {
                       onChange={(e) => updateForm({ username: e.target.value })}
                       autoFocus={true}
                     />
+                    {formErrors.username && (
+                      <div className="text-warning ms-1">
+                        {formErrors.username}
+                      </div>
+                    )}
                   </div>
+
                   <div className="form-group">
                     <label htmlFor="email"></label>
                     <input
@@ -95,6 +113,11 @@ const Register = () => {
                       value={form.email}
                       onChange={(e) => updateForm({ email: e.target.value })}
                     />
+                    {formErrors.email && (
+                      <div className="text-warning ms-1">
+                        {formErrors.email}
+                      </div>
+                    )}
                   </div>
                   <div className="form-group">
                     <label htmlFor="password"></label>
@@ -106,18 +129,17 @@ const Register = () => {
                       value={form.password}
                       onChange={(e) => updateForm({ password: e.target.value })}
                     />
+                    {formErrors.password && (
+                      <div className="text-warning ms-1">
+                        {formErrors.password}
+                      </div>
+                    )}
                   </div>
                   <div className="form-group py-4">
                     <button className="btn btn-dark px-3 fs-3">Sign Up</button>
                   </div>
                 </div>
               )}
-
-              {!formInputsValidity.vusername && <span>Username required</span>}
-
-              {!formInputsValidity.vemail && <span>Email required</span>}
-
-              {!formInputsValidity.vpassword && <span>Password required</span>}
             </form>
 
             <span className="text-white">Already got an account? </span>
