@@ -1,44 +1,58 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
-import CheckButton from "react-validation/build/button";
 import AuthService from "../services/auth.service";
 
-const required = (value) => {
-  if (!value) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This field is required!
-      </div>
-    );
-  }
-};
-
 const Login = (props) => {
-  const form = useRef();
-  const checkBtn = useRef();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const isEmpty = (value) => value.trim() === "";
+
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
-  const onChangeUsername = (e) => {
-    const username = e.target.value;
-    setUsername(username);
+
+  const [form, setForm] = useState({
+    username: "",
+    password: "",
+  });
+
+  function updateForm(value) {
+    return setForm((prev) => {
+      return { ...prev, ...value };
+    });
+  }
+
+  const [formErrors, setFormErrors] = useState({
+    username: "",
+    password: "",
+  });
+
+  const validate = () => {
+    let errors = {};
+
+    if (isEmpty(form.username)) {
+      errors.username = "Username is required";
+    }
+
+    if (isEmpty(form.password)) {
+      errors.password = "Password is required";
+    }
+
+    setFormErrors(errors);
+
+    if (Object.keys(errors).length === 0) {
+      return true;
+    } else {
+      return false;
+    }
   };
-  const onChangePassword = (e) => {
-    const password = e.target.value;
-    setPassword(password);
-  };
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setMessage("");
     setLoading(true);
-    form.current.validateAll();
-    if (checkBtn.current.context._errors.length === 0) {
+
+    if (validate(form)) {
       try {
-        await AuthService.login(username, password);
+        await AuthService.login(form.username, form.password);
         props.onLoggedIn();
       } catch {
         setMessage("Username and/or password is not valid");
@@ -56,31 +70,35 @@ const Login = (props) => {
               memorise new concepts.
             </h2>
 
-            <Form onSubmit={handleLogin} ref={form}>
+            <form onSubmit={handleLogin}>
               <div className="form-group">
                 <label htmlFor="username"></label>
-                <Input
+                <input
                   type="text"
                   className="form-control-lg w-50"
                   name="username"
                   placeholder="Username"
-                  value={username}
-                  onChange={onChangeUsername}
-                  validations={[required]}
+                  value={form.username}
+                  onChange={(e) => updateForm({ username: e.target.value })}
                   autoFocus={true}
                 />
               </div>
+              {formErrors.username && (
+                <div className="text-warning ms-1">{formErrors.username}</div>
+              )}
               <div className="form-group">
                 <label htmlFor="password"></label>
-                <Input
+                <input
                   type="password"
                   className="form-control-lg w-50"
                   name="password"
                   placeholder="Password"
-                  value={password}
-                  onChange={onChangePassword}
-                  validations={[required]}
+                  value={form.password}
+                  onChange={(e) => updateForm({ password: e.target.value })}
                 />
+                {formErrors.password && (
+                  <div className="text-warning ms-1">{formErrors.password}</div>
+                )}
               </div>
               <div className="form-group py-4">
                 <button className="btn btn-dark px-3 fs-3" disabled={loading}>
@@ -90,15 +108,7 @@ const Login = (props) => {
                   <span>Sign In</span>
                 </button>
               </div>
-              {message && (
-                <div className="form-group">
-                  <div className="alert alert-danger" role="alert">
-                    {message}
-                  </div>
-                </div>
-              )}
-              <CheckButton style={{ display: "none" }} ref={checkBtn} />
-            </Form>
+            </form>
 
             <span className="text-white">Not registered yet? </span>
             <Link to={"/register"} className="link-light">
