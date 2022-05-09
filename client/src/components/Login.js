@@ -58,8 +58,8 @@ const Login = (props) => {
         setMessage("Username and/or password is not valid");
       }
     }
-    setLoading(false);
   };
+
   return (
     <React.Fragment>
       <div className="row">
