@@ -46,7 +46,7 @@ const App = () => {
   return (
     <div className="d-flex flex-column vh-100">
       <NavBar logOutHandler={logOutHandler} currentUser={currentUser} />
-      <div className="container-md container-fluid flex-fill">
+      <div className="container-md container-fluid flex-fill py-5">
         <Routes>
           <Route
             exact

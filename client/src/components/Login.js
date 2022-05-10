@@ -64,8 +64,8 @@ const Login = (props) => {
     <React.Fragment>
       <div className="row">
         <div className="col-lg-6 col-md-12 ">
-          <section className="row gy-4 mt-0">
-            <h2 className="display-5 text-white py-2">
+          <section className="row">
+            <h2 className="display-5 text-white">
               Welcome to Flashcards, an online learning tool to help you
               memorise new concepts.
             </h2>

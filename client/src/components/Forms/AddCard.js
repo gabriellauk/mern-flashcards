@@ -37,7 +37,7 @@ const AddCard = () => {
     <React.Fragment>
       <form onSubmit={onSubmit}>
         <div className="row gy-4 justify-content-center">
-          <section className="container pt-5">
+          <section className="container">
             <h2 className="display-5 text-white text-center">
               Add new flashcard
             </h2>

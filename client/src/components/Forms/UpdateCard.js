@@ -62,7 +62,7 @@ const UpdateCard = () => {
     <React.Fragment>
       <div className="row gy-4">
         <div className="col-lg-6 col-md-12 row gy-4 mt-0 mx-auto">
-          <section className="container pt-5">
+          <section className="container">
             <h2 className="display-5 text-white text-center float-start">
               Edit flashcard
             </h2>

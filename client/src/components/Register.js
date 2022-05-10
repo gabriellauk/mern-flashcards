@@ -77,7 +77,7 @@ const Register = () => {
     <React.Fragment>
       <div className="row">
         <div className="col-lg-6 col-md-12 ">
-          <section className="row gy-4 mt-0">
+          <section className="row">
             <h2 className="display-5 text-white py-2">
               Register today to speed up your learning.
             </h2>
