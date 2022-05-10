@@ -116,7 +116,7 @@ const UpdateCard = () => {
                   <div className="form-check form-switch d-inline-block">
                     <input
                       type="checkbox"
-                      className="form-check-input"
+                      className="form-check-input pointer"
                       id="active"
                       checked={form.active}
                       onChange={(e) => updateForm({ active: e.target.checked })}

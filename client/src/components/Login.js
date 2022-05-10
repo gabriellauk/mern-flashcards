@@ -114,7 +114,8 @@ const Login = (props) => {
             <Link to={"/register"} className="link-light">
               Sign up here
             </Link>
-
+            <br />
+            <br />
             <span className="text-white">
               Or try the demo... <br />
               username: <span className="fw-bold">demo</span> | password:{" "}
