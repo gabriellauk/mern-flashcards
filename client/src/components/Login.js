@@ -30,10 +30,12 @@ const Login = (props) => {
 
     if (isEmpty(form.username)) {
       errors.username = "Username is required";
+      setLoading(false);
     }
 
     if (isEmpty(form.password)) {
       errors.password = "Password is required";
+      setLoading(false);
     }
 
     setFormErrors(errors);
