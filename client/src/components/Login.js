@@ -55,6 +55,7 @@ const Login = (props) => {
         await AuthService.login(form.username, form.password);
         props.onLoggedIn();
       } catch {
+        setLoading(false);
         setMessage("Username and/or password is not valid");
       }
     }
@@ -99,6 +100,7 @@ const Login = (props) => {
                 {formErrors.password && (
                   <div className="text-warning ms-1">{formErrors.password}</div>
                 )}
+                {message && <div className="text-warning ms-1">{message}</div>}
               </div>
               <div className="form-group py-4">
                 <button className="btn btn-dark px-3 fs-3" disabled={loading}>
