@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 
 import UserService from "../../services/user.service";
 
@@ -34,20 +34,24 @@ const Card = (props) => {
     props.configureNextCard(props.activeCards);
   };
 
+  const nodeRef = useRef(null)
+
   return (
     <React.Fragment>
       <SwitchTransition>
-        <CSSTransition timeout={300} key={props.cardFront} classNames="fade">
+        <CSSTransition nodeRef={nodeRef} timeout={300} key={props.cardFront} classNames="fade">
           {props.cardFront ? (
             <CardFront
               displayedCard={props.displayedCard}
-              flipCard={flipCard}
+              flipCard={flipCard} 
+              nodeRef={nodeRef}
             />
           ) : (
             <CardBack
               displayedCard={props.displayedCard}
               hideCard={hideCard}
-              nextCard={nextCard}
+              nextCard={nextCard} 
+              nodeRef={nodeRef}
             />
           )}
         </CSSTransition>
