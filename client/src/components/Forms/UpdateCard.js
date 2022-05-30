@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router";
+import { useParams, useNavigate, useLocation } from "react-router";
 
 import UserService from "../../services/user.service";
 
@@ -12,6 +12,10 @@ const UpdateCard = () => {
 
   const params = useParams();
   const navigate = useNavigate();
+
+  const { state } = useLocation();
+
+  const backLocation = state.previousPath ?? "/manage-active-cards";
 
   const getCard = async () => {
     const id = params.id;
@@ -35,7 +39,7 @@ const UpdateCard = () => {
   const deleteCard = async () => {
     try {
       await UserService.deleteCard(params.id);
-      navigate("/manage-active-cards");
+      navigate(backLocation);
     } catch (error) {
       console.log(error.message);
     }
@@ -55,7 +59,7 @@ const UpdateCard = () => {
       console.log(error.message);
     }
 
-    navigate("/manage-active-cards");
+    navigate(backLocation);
   };
 
   return (
