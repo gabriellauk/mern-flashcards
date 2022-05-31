@@ -5,7 +5,7 @@ import NoCards from "../common/NoCards";
 
 const NoActiveCards = () => {
    return (
-    <React.Fragment>
+    <React.Fragment> 
       <section className="row py-4">
         <div className="col-12">
           <h3 className="text-white pb-2">Manage cards</h3>
@@ -14,13 +14,13 @@ const NoActiveCards = () => {
         <div className="row m-1">
           <ul className="nav nav-tabs">
             <li className="nav-item">
-              <a
+              <span
                 className="nav-link active text-white fs-5"
                 aria-current="page"
                 href="#"
               >
                 Active
-              </a>
+              </span>
             </li>
             <li className="nav-item">
               <Link

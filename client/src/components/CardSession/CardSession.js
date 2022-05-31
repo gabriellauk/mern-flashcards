@@ -39,7 +39,7 @@ const CardSession = (props) => {
     let currentIndex = cards.length,
       randomIndex;
 
-    while (currentIndex != 0) {
+    while (currentIndex !== 0) {
       // Select a remaining element
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;

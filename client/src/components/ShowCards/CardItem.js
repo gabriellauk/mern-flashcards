@@ -8,7 +8,10 @@ const CardItem = (props) => {
       <div className="col-lg-4 col-md-6">
         <div className="card rounded custom-card-listings-height p-4">
           <div className="pull-right">
-            <Link to={`/edit/${props.card["_id"]}`} state={{ previousPath: pathname }}>
+            <Link
+              to={`/edit/${props.card["_id"]}`}
+              state={{ previousPath: pathname }}
+            >
               <i
                 className="bi bi-pencil-fill fs-4 float-end link-dark"
                 title="Edit"

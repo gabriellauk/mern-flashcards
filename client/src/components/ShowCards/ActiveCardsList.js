@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import CardItem from "./CardItem";
 
 const ActiveCardsList = (props) => {
-
   // Maps all Cards to a Card component
   function cardList() {
     return props.activeCards.map((card) => {
@@ -28,13 +27,13 @@ const ActiveCardsList = (props) => {
         <div className="row m-1">
           <ul className="nav nav-tabs">
             <li className="nav-item">
-              <a
+              <span
                 className="nav-link active text-white fs-5"
                 aria-current="page"
                 href="#"
               >
                 Active
-              </a>
+              </span>
             </li>
             <li className="nav-item">
               <Link

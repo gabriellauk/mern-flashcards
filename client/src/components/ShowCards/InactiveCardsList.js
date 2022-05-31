@@ -52,9 +52,9 @@ const InactiveCardsList = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link active text-white fs-5" href="#">
+              <span className="nav-link active text-white fs-5" href="#">
                 Inactive
-              </a>
+              </span>
             </li>
           </ul>
         </div>
