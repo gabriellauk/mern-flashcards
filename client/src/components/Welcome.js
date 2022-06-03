@@ -1,27 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import UserService from "../services/user.service";
 
 import ButtonIcon from "./Layout/ButtonIcon";
 
 const Welcome = () => {
-  const [content, setContent] = useState("");
-
-  useEffect(() => {
-    UserService.getWelcome().then(
-      (response) => {
-        setContent(response.data);
-      },
-      (error) => {
-        const _content =
-          (error.response && error.response.data) ||
-          error.message ||
-          error.toString();
-        setContent(_content);
-      }
-    );
-  }, []);
-
   let navigate = useNavigate();
 
   const goTo = (page) => {

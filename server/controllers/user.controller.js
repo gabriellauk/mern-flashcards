@@ -1,9 +1,5 @@
 const Card = require("../models/card");
 
-exports.welcome = (req, res) => {
-  res.status(200);
-};
-
 exports.activeCards = async (req, res) => {
   const query = { user: req.userId, active: true };
   const cards = await Card.find(query);
