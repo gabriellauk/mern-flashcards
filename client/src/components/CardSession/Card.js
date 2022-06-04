@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 
-import UserService from "../../services/user.service";
+import CardService from "../../services/card.service";
 
 import CardFront from "./CardFront";
 import CardBack from "./CardBack";
@@ -25,7 +25,7 @@ const Card = (props) => {
     const updatedCardStatus = { active: false };
 
     try {
-      await UserService.updateCardStatus(id, updatedCardStatus);
+      await CardService.updateCardStatus(id, updatedCardStatus);
     } catch (error) {
       console.log(error.message);
     }

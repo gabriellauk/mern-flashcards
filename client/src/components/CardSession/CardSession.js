@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import UserService from "../../services/user.service";
+import CardService from "../../services/card.service";
 
 import Card from "./Card";
 import SessionOver from "./SessionOver";
@@ -16,7 +16,7 @@ const CardSession = (props) => {
 
   const loadActiveCards = async () => {
     try {
-      const myCards = await UserService.getActiveCards();
+      const myCards = await CardService.getActiveCards();
 
       if (myCards.length === 0) {
         setNoCards(true);

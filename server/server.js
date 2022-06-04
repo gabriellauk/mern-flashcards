@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // routes
 require('./routes/auth.routes')(app);
-require('./routes/user.routes')(app);
+require('./routes/card.routes')(app);
 
 const mongoose = require( 'mongoose' )
 mongoose.connect( process.env.ATLAS_URI )

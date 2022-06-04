@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo } from "react";
 
-import UserService from "../../services/user.service";
+import CardService from "../../services/card.service";
 import ActiveCardsList from "./ActiveCardsList";
 import Error from "./Error";
 import NoActiveCards from "./NoActiveCards";
@@ -13,7 +13,7 @@ const UserCards = (props) => {
 
   const loadActiveCards = async () => {
     try {
-      const cards = await UserService.getActiveCards();
+      const cards = await CardService.getActiveCards();
       setActiveCards(cards);
     } catch (error) {
       const errorMessage = error.message || error.toString();

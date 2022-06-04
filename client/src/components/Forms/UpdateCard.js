@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, useLocation } from "react-router";
 
-import UserService from "../../services/user.service";
+import CardService from "../../services/card.service";
 
 const UpdateCard = () => {
   const [form, setForm] = useState({
@@ -20,7 +20,7 @@ const UpdateCard = () => {
   const getCard = async () => {
     const id = params.id;
     try {
-      const result = await UserService.getSpecificCard(id);
+      const result = await CardService.getSpecificCard(id);
       setForm(result);
     } catch (error) {
       console.log(error.message);
@@ -38,7 +38,7 @@ const UpdateCard = () => {
 
   const deleteCard = async () => {
     try {
-      await UserService.deleteCard(params.id);
+      await CardService.deleteCard(params.id);
       navigate(backLocation);
     } catch (error) {
       console.log(error.message);
@@ -54,7 +54,7 @@ const UpdateCard = () => {
     const updatedCard = { ...form };
 
     try {
-      await UserService.updateCard(id, updatedCard);
+      await CardService.updateCard(id, updatedCard);
     } catch (error) {
       console.log(error.message);
     }

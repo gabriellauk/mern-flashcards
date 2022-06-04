@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 
-import UserService from "../../services/user.service";
+import CardService from "../../services/card.service";
 
 const AddCard = () => {
   const [form, setForm] = useState({
@@ -25,7 +25,7 @@ const AddCard = () => {
     const newCard = { ...form };
 
     try {
-      await UserService.addCard(newCard);
+      await CardService.addCard(newCard);
       setForm({ frontText: "", backText: "" });
       navigate("/manage-active-cards");
     } catch (error) {

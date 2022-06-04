@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
 
-import UserService from "../../services/user.service";
+import CardService from "../../services/card.service";
 
 import CardItem from "./CardItem";
 
@@ -14,7 +14,7 @@ const InactiveCardsList = () => {
 
   const loadInactiveCards = async () => {
     try {
-      const cards = await UserService.getInactiveCards();
+      const cards = await CardService.getInactiveCards();
       setInactiveCards(cards);
     } catch (error) {
       const errorMessage = error.message || error.toString();
