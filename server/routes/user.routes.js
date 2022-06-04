@@ -10,33 +10,33 @@ module.exports = function (app) {
     next();
   });
   app.get(
-    "/api/test/activeCards",
+    "/api/activeCards",
     [authJwt.verifyToken],
     controller.activeCards
   );
   app.get(
-    "/api/test/inactiveCards",
+    "/api/inactiveCards",
     [authJwt.verifyToken],
     controller.inactiveCards
   );
-  app.post("/api/test/addCard", [authJwt.verifyToken], controller.addCard);
+  app.post("/api/addCard", [authJwt.verifyToken], controller.addCard);
   app.delete(
-    "/api/test/deleteCard/:id",
+    "/api/deleteCard/:id",
     [authJwt.verifyToken],
     controller.deleteCard
   );
   app.get(
-    "/api/test/cards/:id",
+    "/api/cards/:id",
     [authJwt.verifyToken],
     controller.getSpecificCard
   );
   app.post(
-    "/api/test/cards/update/:id",
+    "/api/cards/update/:id",
     [authJwt.verifyToken],
     controller.updateCard
   );
   app.post(
-    "/api/test/cards/updatecardstatus/:id",
+    "/api/cards/updateCardStatus/:id",
     [authJwt.verifyToken],
     controller.updateCardStatus
   );
