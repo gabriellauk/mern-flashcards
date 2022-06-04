@@ -108,10 +108,6 @@ const updateCardStatus = async (idStringified, reqBody) => {
   }
 };
 
-const getWelcome = () => {
-  return axios.get(API_URL + "welcome", { headers: authHeader() });
-};
-
 export default {
   getActiveCards,
   getInactiveCards,
@@ -120,5 +116,4 @@ export default {
   getSpecificCard,
   updateCard,
   updateCardStatus,
-  getWelcome,
 };
