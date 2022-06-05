@@ -108,7 +108,7 @@ const updateCardStatus = async (idStringified, reqBody) => {
   }
 };
 
-export default {
+const CardService = {
   getActiveCards,
   getInactiveCards,
   addCard,
@@ -117,3 +117,5 @@ export default {
   updateCard,
   updateCardStatus,
 };
+
+export default CardService;
