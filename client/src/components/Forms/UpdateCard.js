@@ -17,17 +17,18 @@ const UpdateCard = () => {
 
   const backLocation = state.previousPath ?? "/manage-active-cards";
 
-  const getCard = async () => {
-    const id = params.id;
-    try {
-      const result = await CardService.getSpecificCard(id);
-      setForm(result);
-    } catch (error) {
-      console.log(error.message);
+  useEffect(() => {
+    async function getCard() {
+      const id = params.id;
+      try {
+        const result = await CardService.getSpecificCard(id);
+        setForm(result);
+      } catch (error) {
+        console.log(error.message);
+      }
     }
-  };
-
-  useEffect(getCard, []);
+    getCard();
+  }, [params.id]);
 
   // Update the state
   function updateForm(value) {
