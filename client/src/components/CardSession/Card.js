@@ -45,7 +45,7 @@ const Card = (props) => {
           key={props.cardFront}
           classNames="fade"
         >
-          <div ref={nodeRef}>
+          <div ref={nodeRef} className="h-100">
             {props.cardFront ? (
               <CardFront
                 displayedCard={props.displayedCard}
