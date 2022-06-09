@@ -34,26 +34,32 @@ const Card = (props) => {
     props.configureNextCard(props.activeCards);
   };
 
-  const nodeRef = useRef(null)
+  const nodeRef = useRef(null);
 
   return (
     <React.Fragment>
       <SwitchTransition>
-        <CSSTransition nodeRef={nodeRef} timeout={300} key={props.cardFront} classNames="fade">
-          {props.cardFront ? (
-            <CardFront
-              displayedCard={props.displayedCard}
-              flipCard={flipCard} 
-              nodeRef={nodeRef}
-            />
-          ) : (
-            <CardBack
-              displayedCard={props.displayedCard}
-              hideCard={hideCard}
-              nextCard={nextCard} 
-              nodeRef={nodeRef}
-            />
-          )}
+        <CSSTransition
+          nodeRef={nodeRef}
+          timeout={300}
+          key={props.cardFront}
+          classNames="fade"
+        >
+          <div ref={nodeRef}>
+            {props.cardFront ? (
+              <CardFront
+                displayedCard={props.displayedCard}
+                flipCard={flipCard}
+              />
+            ) : (
+              <CardBack
+                displayedCard={props.displayedCard}
+                hideCard={hideCard}
+                nextCard={nextCard}
+                nodeRef={nodeRef}
+              />
+            )}
+          </div>
         </CSSTransition>
       </SwitchTransition>
     </React.Fragment>
