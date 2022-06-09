@@ -2,7 +2,7 @@ import axios from "axios";
 import authHeader from "./auth-header";
 import handleError from "./error-handler";
 
-const API_URL = "http://localhost:5000/api/";
+const API_URL = process.env.REACT_APP_CARD_API_URL;
 
 const getActiveCards = async () => {
   try {
