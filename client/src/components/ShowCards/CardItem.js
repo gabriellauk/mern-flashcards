@@ -18,8 +18,10 @@ const CardItem = (props) => {
               ></i>
             </Link>
           </div>
-          <div className="card-body text-center pb-1 px-0 pt-0">
+          <div className="card-body text-center pb-1 px-0 pt-0 d-flex justify-content-center">
+          <span className="align-self-center">
             {props.card.frontText}
+            </span>
           </div>
         </div>
       </div>
