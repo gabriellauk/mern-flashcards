@@ -1,5 +1,4 @@
-# mern-flashcards
-
+# Flashcards
 Flashcards is a full stack MERN application enabling users to create flashcards to help them memorise new concepts.
 
 ## Features
