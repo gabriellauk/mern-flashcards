@@ -15,8 +15,10 @@ const UpdateCard = () => {
 
   const { state } = useLocation();
 
+  // Set the destination after form submission based on previous page path
   const backLocation = state.previousPath ?? "/manage-active-cards";
 
+  // Fetch the relevant Card based on ID in the URL
   useEffect(() => {
     async function getCard() {
       const id = params.id;
@@ -30,13 +32,14 @@ const UpdateCard = () => {
     getCard();
   }, [params.id]);
 
-  // Update the state
+  // Updated card attributes controlled using state based on form values
   function updateForm(value) {
     return setForm((prev) => {
       return { ...prev, ...value };
     });
   }
 
+  // Remove the card from the database and return to the previous page path
   const deleteCard = async () => {
     try {
       await CardService.deleteCard(params.id);

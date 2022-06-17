@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import CardItem from "./CardItem";
 
 const ActiveCardsList = (props) => {
-  // Maps all Cards to a Card component
+  // Maps all Cards to a CardItem component
   function cardList() {
     return props.activeCards.map((card) => {
       return <CardItem card={card} key={card["_id"]} />;

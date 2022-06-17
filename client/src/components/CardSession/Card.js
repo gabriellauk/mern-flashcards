@@ -18,7 +18,7 @@ const Card = (props) => {
     props.configureNextCard(props.activeCards);
   };
 
-  // Update Card in the database
+  // Set the card as inactive, then move on to the next one
   const hideCard = async () => {
     const id = props.displayedCard._id;
 
@@ -39,6 +39,7 @@ const Card = (props) => {
   return (
     <React.Fragment>
       <SwitchTransition>
+        {/* Fade transition effect, front / back status controlled by state */}
         <CSSTransition
           nodeRef={nodeRef}
           timeout={300}

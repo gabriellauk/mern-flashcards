@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import AuthService from "../services/auth.service";
 
 const Login = (props) => {
+  // Defining a function to check if field is empty
   const isEmpty = (value) => value.trim() === "";
 
   const [loading, setLoading] = useState(false);
@@ -25,6 +26,7 @@ const Login = (props) => {
     password: "",
   });
 
+  // If a field is invalid, stop displaying the loading icon and instead show the error message
   const validate = () => {
     let errors = {};
 
@@ -52,12 +54,14 @@ const Login = (props) => {
     setMessage("");
     setLoading(true);
 
+    // If validate returned true, attempt to log in
     if (validate(form)) {
       try {
         await AuthService.login(form.username, form.password);
         props.onLoggedIn();
       } catch {
         setLoading(false);
+        // If log in fails, display error message
         setMessage("Username and/or password is not valid");
       }
     }

@@ -14,27 +14,6 @@ const CardSession = (props) => {
   const [noCards, setNoCards] = useState(false);
   const [sessionOver, setSessionOver] = useState(false);
 
-  const loadActiveCards = async () => {
-    try {
-      const myCards = await CardService.getActiveCards();
-
-      if (myCards.length === 0) {
-        setNoCards(true);
-        return;
-      }
-
-      const randomOrder = randomiseActiveCards(myCards);
-      configureNextCard(randomOrder);
-    } catch (error) {
-      const errorMessage = error.message || error.toString();
-      setErrorContent(errorMessage);
-    }
-  };
-
-  useEffect(() => {
-    loadActiveCards();
-  }, []);
-
   const randomiseActiveCards = (cards) => {
     let currentIndex = cards.length,
       randomIndex;
@@ -54,6 +33,9 @@ const CardSession = (props) => {
     return cards;
   };
 
+  // Check there are active cards remaining.
+  // If not, show the session over component
+  // If yes, choose the next card to display
   const configureNextCard = (cards) => {
     if (cards.length === 0) {
       setSessionOver(true);
@@ -66,6 +48,30 @@ const CardSession = (props) => {
 
     setDisplayedCard(card);
   };
+
+  // Fetch all active cards from the database
+  // Randomise the order and choose which one to show
+  const loadActiveCards = async () => {
+    try {
+      const myCards = await CardService.getActiveCards();
+
+      // If the user has no active cards, show the NoCards component
+      if (myCards.length === 0) {
+        setNoCards(true);
+        return;
+      }
+
+      const randomOrder = randomiseActiveCards(myCards);
+      configureNextCard(randomOrder);
+    } catch (error) {
+      const errorMessage = error.message || error.toString();
+      setErrorContent(errorMessage);
+    }
+  };
+
+  useEffect(() => {
+    loadActiveCards();
+  }, []);
 
   const newSession = () => {
     setSessionOver(false);

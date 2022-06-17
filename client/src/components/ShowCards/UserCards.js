@@ -9,8 +9,10 @@ const UserCards = (props) => {
   const [errorContent, setErrorContent] = useState("");
   const [activeCards, setActiveCards] = useState([]);
 
+  // Check if the user has any active cards at all and record this
   const hasActiveCards = useMemo(() => activeCards.length > 0, [activeCards]);
 
+  // Fetch the user's active cards
   const loadActiveCards = async () => {
     try {
       const cards = await CardService.getActiveCards();
@@ -25,6 +27,8 @@ const UserCards = (props) => {
     loadActiveCards();
   }, []);
 
+  // If the user doesn't have any active cards, display the NoActiveCards component.
+  // Otherwise, provided no errors exist, show the ActiveCardsList component.
   if (!hasActiveCards) {
     return <NoActiveCards />;
   } else {

@@ -27,6 +27,8 @@ const Register = () => {
     password: "",
   });
 
+  // Check the values entered are valid according to specified rules
+  // If not, display the relevant error message(s)
   const validate = () => {
     let errors = {};
 
@@ -57,6 +59,7 @@ const Register = () => {
     e.preventDefault();
     setMessage("");
 
+    // If validate returns true, attempt to create a new user baesd on the form input values
     if (validate(form)) {
       try {
         const result = await AuthService.register(

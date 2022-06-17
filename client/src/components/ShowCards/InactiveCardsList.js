@@ -12,6 +12,7 @@ const InactiveCardsList = () => {
   const [errorContent, setErrorContent] = useState("");
   const [inactiveCards, setInactiveCards] = useState([]);
 
+  // Fatch all user's cards marked as inactive
   const loadInactiveCards = async () => {
     try {
       const cards = await CardService.getInactiveCards();
@@ -26,7 +27,7 @@ const InactiveCardsList = () => {
     loadInactiveCards();
   }, []);
 
-  // Maps all Cards to a Card component
+  // Map all Cards to a CardItem component
   function cardList() {
     return inactiveCards.map((card) => {
       return <CardItem card={card} key={card["_id"]} />;

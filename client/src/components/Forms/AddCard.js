@@ -18,7 +18,7 @@ const AddCard = () => {
     });
   }
 
-  // Create Card in the database
+  // Create Card in the database and navigate to the card management section
   const onSubmit = async (e) => {
     e.preventDefault();
 

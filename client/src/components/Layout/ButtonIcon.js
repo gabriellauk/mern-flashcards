@@ -1,5 +1,6 @@
 import React from "react";
 
+// Component to display a button featuring an icon
 const ButtonIcon = (props) => {
   return (
     <button
