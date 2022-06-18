@@ -30,12 +30,13 @@ const App = () => {
   };
   useEffect(updateUserState, []);
 
-  useEffect(() => {
-    EventBus.on("logout", () => {
-      logOutHandler();
-    });
+  const runLogOut = () => {
+    logOutHandler();
+  };
 
-    return () => EventBus.remove("logout");
+  useEffect(() => {
+    EventBus.on("logout", runLogOut);
+    return () => EventBus.remove("logout", runLogOut);
   }, []);
 
   const logOutHandler = () => {
