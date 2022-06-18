@@ -4,6 +4,7 @@ import handleError from "./error-handler";
 
 const API_URL = process.env.REACT_APP_CARD_API_URL;
 
+// Fetch the active cards for the user
 const getActiveCards = async () => {
   try {
     return (await axios.get(API_URL + "activeCards", { headers: authHeader() }))
@@ -14,6 +15,7 @@ const getActiveCards = async () => {
   }
 };
 
+// Fetch the inactive cards for the user
 const getInactiveCards = async () => {
   try {
     return (
@@ -25,6 +27,7 @@ const getInactiveCards = async () => {
   }
 };
 
+// Save a new card
 const addCard = async (reqBody) => {
   const myAuthHeader = authHeader();
 
@@ -40,6 +43,7 @@ const addCard = async (reqBody) => {
   }
 };
 
+// Delete a card
 const deleteCard = async (id) => {
   try {
     return (
@@ -53,6 +57,7 @@ const deleteCard = async (id) => {
   }
 };
 
+// Fetch a specific card by ID
 const getSpecificCard = async (idStringified) => {
   try {
     return (
@@ -66,6 +71,7 @@ const getSpecificCard = async (idStringified) => {
   }
 };
 
+// Update a specific card by ID
 const updateCard = async (idStringified, reqBody) => {
   const myAuthHeader = authHeader();
 
@@ -85,6 +91,7 @@ const updateCard = async (idStringified, reqBody) => {
   }
 };
 
+// Change the status of a card to inactive or active
 const updateCardStatus = async (idStringified, reqBody) => {
   const myAuthHeader = authHeader();
 
