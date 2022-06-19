@@ -23,12 +23,19 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState(AuthService.getCurrentUser());
 
   const updateUserState = () => {
+    // Check if there is a user currently logged in
     const user = AuthService.getCurrentUser();
+    // If there is, store this in state
     if (user) {
       setCurrentUser(user);
     }
   };
   useEffect(updateUserState, []);
+
+  const logOutHandler = () => {
+    AuthService.logout();
+    setCurrentUser(undefined);
+  };
 
   const runLogOut = () => {
     logOutHandler();
@@ -39,16 +46,13 @@ const App = () => {
     return () => EventBus.remove("logout", runLogOut);
   }, []);
 
-  const logOutHandler = () => {
-    AuthService.logout();
-    setCurrentUser(undefined);
-  };
-
   return (
     <div className="d-flex flex-column vh-100">
       <NavBar logOutHandler={logOutHandler} currentUser={currentUser} />
       <div className="container-md container-fluid flex-fill py-5">
         <Routes>
+          {/* If the user is logged in, show the welcome component.
+          Otherwide, show the login component. */}
           <Route
             exact
             path={"/"}
