@@ -2,9 +2,11 @@ const jwt = require("jsonwebtoken");
 
 verifyToken = (req, res, next) => {
   let token = req.headers["x-access-token"];
+  // Check if a token has been provided
   if (!token) {
     return res.status(403).send({ message: "No token provided!" });
   }
+  // Verify the token provided
   jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
     if (err) {
       return res.status(401).send({ message: "Unauthorised!" });
