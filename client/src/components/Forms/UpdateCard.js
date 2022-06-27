@@ -127,6 +127,7 @@ const UpdateCard = () => {
                       className="form-check-input pointer"
                       id="active"
                       checked={form.active}
+                      title="Toggle active or inactive"
                       onChange={(e) => updateForm({ active: e.target.checked })}
                     />
                     <span className="ms-2">Active</span>
