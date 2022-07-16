@@ -1,7 +1,7 @@
 # Flashcards
 Flashcards is a full stack MERN application enabling users to create flashcards to help them memorise new concepts.
 
-Live demo: https://mernflashcards.netlify.app/
+Live demo: https://mernflashcards.netlify.app
 
 ## Features
 * Register, login and logout
@@ -10,11 +10,7 @@ Live demo: https://mernflashcards.netlify.app/
 
 ## Technologies
 These are some of the technologies I used to create this:
-* React
-* React Router
+* React / React Router / React Transition Group
 * Axios
-* Boostrap/CSS/SASS
-* React Transition Group
-* Express
-* MongoDB
-* Mongoose
+* Node / Express
+* MongoDB / Mongoose
