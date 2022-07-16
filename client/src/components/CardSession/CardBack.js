@@ -1,5 +1,7 @@
 import React from "react";
 
+// Shows the answer, hide button and next card button
+
 const CardBack = (props) => {
   return (
     <div className="row gy-4 justify-content-center py-5 h-100">

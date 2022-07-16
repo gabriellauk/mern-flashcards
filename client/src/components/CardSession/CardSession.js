@@ -33,15 +33,18 @@ const CardSession = (props) => {
     return cards;
   };
 
-  // Check there are active cards remaining.
-  // If not, show the session over component
-  // If yes, choose the next card to display
+  
+  
+  
   const configureNextCard = (cards) => {
+    // Check there are active cards remaining.
     if (cards.length === 0) {
+      // If there are no active cards left, show the session over component
       setSessionOver(true);
       return;
     }
 
+    // If there are active cards left, choose the next card to display
     const [card, ...otherCards] = cards;
 
     setActiveCards(otherCards);
@@ -49,10 +52,9 @@ const CardSession = (props) => {
     setDisplayedCard(card);
   };
 
-  // Fetch all active cards from the database
-  // Randomise the order and choose which one to show
   const loadActiveCards = async () => {
     try {
+      // Fetch all active cards from the database
       const myCards = await CardService.getActiveCards();
 
       // If the user has no active cards, show the NoCards component
@@ -61,6 +63,7 @@ const CardSession = (props) => {
         return;
       }
 
+      // Randomise the order of cards and choose which one to show
       const randomOrder = randomiseActiveCards(myCards);
       configureNextCard(randomOrder);
     } catch (error) {

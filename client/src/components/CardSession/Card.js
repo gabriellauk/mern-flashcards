@@ -12,6 +12,7 @@ const Card = (props) => {
     props.setCardFront(false);
   };
 
+  // Get the next card ready
   const nextCard = () => {
     props.setCardFront(true);
 

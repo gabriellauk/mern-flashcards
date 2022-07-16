@@ -2,6 +2,9 @@ import React from "react";
 
 import ButtonIcon from "../Layout/ButtonIcon";
 
+// Tells the user they have no active cards left
+// And prompts them to start a new session
+
 const SessionOver = (props) => {
   return (
     <React.Fragment>

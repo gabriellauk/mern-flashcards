@@ -1,5 +1,7 @@
 import React from "react";
 
+// Shows the question and flip card button
+
 const CardFront = (props) => {
   return (
     <div className="row gy-4 justify-content-center py-5 h-100">

@@ -17,6 +17,7 @@ const NoCards = () => {
           You don't have any active cards at the moment.
         </h2>
 
+        {/* Add card button */}
         <div className="row gy-2">
           <div className="col-md-auto">
             <ButtonIcon
@@ -25,6 +26,7 @@ const NoCards = () => {
               icon="bi-plus-circle-fill"
             />
           </div>
+          {/* Manage inactive cards button */}
           <div className="col-md-auto">
             <ButtonIcon
               action={() => goTo("../../manage-inactive-cards")}
