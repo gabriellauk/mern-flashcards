@@ -48,7 +48,7 @@ const ActiveCardsList = (props) => {
         <div className="row gy-4 m-1">
           <div className="col-lg-4 col-md-6">
             <div
-              className="card rounded custom-card-listings-height p-4 pointer"
+              className="card rounded custom-card-listings-height p-4 pointer bg-white"
               onClick={goToAddCard}
             >
               <div className="card-body d-flex justify-content-center pb-1 px-0 pt-0 fs-1">

@@ -6,7 +6,7 @@ const CardItem = (props) => {
   return (
     <React.Fragment>
       <div className="col-lg-4 col-md-6">
-        <div className="card rounded custom-card-listings-height p-4">
+        <div className="card rounded custom-card-listings-height p-4 bg-white">
           <div className="pull-right">
             <Link
               to={`/edit/${props.card["_id"]}`}
